@@ -42,3 +42,9 @@
 ■ 機能の実装方針予定
 MVPリリースまでに機能候補に記載した機能1~9を満たしたサービスを開発。
 その後、地図情報API（GoogleMap API等）を利用し、機能候補10の位置情報機能を追加する。
+
+■ 画面遷移図
+https://www.figma.com/file/L5U91EVX2ycd0E1gv6tJvb/%E7%84%A1%E9%A1%8C?type=design&node-id=22%3A23&mode=design&t=qXcNytzqvCZmnfOh-1
+
+■ ER図
+https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b

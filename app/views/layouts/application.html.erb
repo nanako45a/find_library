@@ -11,6 +11,11 @@
 
   <body>
     <%= render 'layouts/header' %>
+
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+
     <main class="container mx-auto mt-5 px-5 flex"> <!-- mt-28 から mt-5 などに変更して、ヘッダーとの間隔を調整 -->
       <%= yield %>
     </main>

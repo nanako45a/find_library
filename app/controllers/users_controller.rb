@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  # ログインしていないユーザーでもnew,createアクションにアクセスできるように設定（require_loginフィルターをスキップ）
+  skip_before_action :require_login, only: [:new, :create]
+ 
   def new
     @user = User.new
   end

@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
 
     if @user
       flash[:success] = 'ログインしました'
-      redirect_back_or_to posts_path
+      redirect_back_or_to profile_path
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new, status: :unprocessable_entity

@@ -1,0 +1,42 @@
+<div class="container mx-auto p-4">
+  <div class="max-w-md mx-auto">
+    <h1 class="text-xl font-semibold mb-4">プロフィールを編集</h1>
+
+    <!-- ProfilesControllerで設定した@userのデータをフォームに反映 -->
+    <%= form_with(model: @user, local: true) do |form| %>
+      <% if @user.errors.any? %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          <strong>エラーが発生しました：</strong>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- 名前の入力フィールド -->
+      <div class="mb-4">
+        <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <!-- メールアドレスの入力フィールド -->
+      <div class="mb-4">
+        <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <!-- アバターの入力フィールド（ファイルアップロード） -->
+      <div class="mb-4">
+        <%= form.label :avatar, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.file_field :avatar, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <!-- 更新ボタン -->
+      <div class="flex justify-center">
+        <%= form.submit "更新", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
+  </div>
+</div>

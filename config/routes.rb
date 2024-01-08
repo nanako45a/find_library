@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
 
   # ユーザー登録機能用のルート（ルート名:new_user_path,users_path）
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
+
+  # 単数形リソースのプロフィールルート
+  resource :profile, only: [:show, :edit, :update]
 
   # ルートパスの定義
   root "top#index"

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_one :profile, dependent: :destroy
+
   authenticates_with_sorcery!
 
   # 必要に応じて、関連付けを追加します

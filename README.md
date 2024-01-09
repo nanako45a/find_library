@@ -30,9 +30,9 @@
 
 ■ 機能候補
 1.ユーザー登録機能:id,email,crypted_password,salt,name,created_at,updated_at登録完了（avatar未）
-2.ログイン機能:機能確認未
-3.ログアウト機能:機能確認未
-4.プロフィール編集機能
+2.ログイン機能:機能確認済み
+3.ログアウト機能:deleteメソッドではなくgetメソッドが送信されることによるエラーが発生している
+4.プロフィール編集機能:機能確認済み
 5.パスワードリセット機能
 6.投稿作成機能（画像投稿含む）
 7.投稿編集機能
@@ -49,3 +49,12 @@ https://www.figma.com/file/L5U91EVX2ycd0E1gv6tJvb/%E7%84%A1%E9%A1%8C?type=design
 
 ■ ER図
 https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b
+
+usersテーブル(ユーザー情報管理):
+t.string "email,crypted_password,salt,name"
+t.datetime "created_at,updated_at"
+
+profileテーブル（プロフィール情報管理）:
+t.bigint "user_id"
+t.string "name"
+t.datetime "created_at,updated_at"

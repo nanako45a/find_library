@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
 
     if @user
       flash[:success] = 'ログインしました'
-      redirect_back_or_to posts_path
+      redirect_back_or_to profile_path #投稿一覧機能実装したらposts_pathに変更
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new, status: :unprocessable_entity
@@ -18,8 +18,8 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    logout
-    flash[:success] = "ログアウトしました"
-    redirect_to login_path, status: :see_other
+    reset_session # セッションをクリア
+    flash[:notice] = 'ログアウトしました'
+    redirect_to login_path
   end
 end

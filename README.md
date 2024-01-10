@@ -51,12 +51,13 @@ https://www.figma.com/file/L5U91EVX2ycd0E1gv6tJvb/%E7%84%A1%E9%A1%8C?type=design
 https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b
 
 usersテーブル:
-t.string "email,crypted_password,salt,name"
-t.datetime "created_at,updated_at"
-t.index email name: index_users_on_email
+t.string "email,crypted_password,salt,name","reset_password_token"
+t.datetime "created_at,updated_at","reset_password_token_expires_at,reset_password_email_sent_at"
+t.index "email" name: index_users_on_email
+t.integer "access_count_to_reset_password_page"
 
 profileテーブル:
 t.bigint "user_id"
 t.string "name"
 t.datetime "created_at,updated_at"
-t.index user_id name: index_profiles_on_user_id
+t.index "user_id" name: index_profiles_on_user_id

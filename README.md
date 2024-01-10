@@ -50,11 +50,13 @@ https://www.figma.com/file/L5U91EVX2ycd0E1gv6tJvb/%E7%84%A1%E9%A1%8C?type=design
 ■ ER図
 https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b
 
-usersテーブル(ユーザー情報管理):
+usersテーブル:
 t.string "email,crypted_password,salt,name"
 t.datetime "created_at,updated_at"
+t.index email name: index_users_on_email
 
-profileテーブル（プロフィール情報管理）:
+profileテーブル:
 t.bigint "user_id"
 t.string "name"
 t.datetime "created_at,updated_at"
+t.index user_id name: index_profiles_on_user_id

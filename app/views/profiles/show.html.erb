@@ -1,10 +1,18 @@
 <div class="container mx-auto p-4">
   <div class="flex flex-col items-center">
 
-    <!-- プロフィール情報 -->
+    <!-- プロフィール情報タイトル -->
     <div class="text-center mt-4">
-      <h1 class="text-xl font-semibold"><%= @profile.name %></h1>
-      <p class="text-gray-600"><%= @user.email %></p>
+      <h1 class="text-xl font-bold mb-4">マイページ</h1>
+
+      <div class="mb-2">
+        <span class="font-semibold">名前: </span>
+        <span class="text-xl"><%= @profile.name %></span>
+      </div>
+      <div>
+        <span class="font-semibold">メールアドレス: </span>
+        <span class="text-gray-600"><%= @user.email %></span>
+      </div>
     </div>
   </div>
 

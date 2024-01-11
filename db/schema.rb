@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_10_101653) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_11_070828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "libraries", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "prefecture", null: false
+    t.integer "study_rooms"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false

@@ -29,11 +29,11 @@
 また、位置情報を記載し、足を運びやすい場所に位置しているかも伏せて確認することができる。
 
 ■ 機能候補
-1.ユーザー登録機能:id,email,crypted_password,salt,name,created_at,updated_at登録完了（avatar未）
+1.ユーザー登録機能:機能確認済み（avatar未）
 2.ログイン機能:機能確認済み
 3.ログアウト機能:機能確認済み
 4.プロフィール編集機能:機能確認済み
-5.パスワードリセット機能
+5.パスワードリセット機能:機能確認済み
 6.投稿作成機能（画像投稿含む）
 7.投稿編集機能
 8.投稿閲覧機能（未ログインでも閲覧可能）
@@ -61,3 +61,9 @@ t.bigint "user_id"
 t.string "name"
 t.datetime "created_at,updated_at"
 t.index "user_id" name: index_profiles_on_user_id
+
+libraries"テーブル
+t.string "name,prefecture"
+t.integer "study_rooms"
+t.float "latitude,longitude"
+t.datetime "created_at,updated_at"

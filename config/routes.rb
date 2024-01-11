@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+  get 'posts/show'
+  get 'posts/new'
+  get 'posts/create'
+  get 'posts/edit'
+  get 'posts/update'
+  get 'posts/destroy'
   get 'libraries/index'
   get 'libraries/show'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
@@ -27,6 +34,9 @@ Rails.application.routes.draw do
 
   # 図書館一覧画面のルート
   resources :libraries, only: [:index, :show]
+
+  # 投稿一覧
+  resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   # ルートパスの定義
   root "top#index"

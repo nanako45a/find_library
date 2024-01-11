@@ -67,3 +67,11 @@ t.string "name,prefecture"
 t.integer "study_rooms"
 t.float "latitude,longitude"
 t.datetime "created_at,updated_at"
+
+postsテーブル
+t.string "title"
+t.text "body"
+t.bigint "user_id,library_id"
+t.datetime "created_at,updated_at"
+t.index "library_id", name: "index_posts_on_library_id"
+t.index "user_id", name: "index_posts_on_user_id"

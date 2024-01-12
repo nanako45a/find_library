@@ -5,10 +5,12 @@
     <% @libraries.each do |library| %>
       <div class="border rounded-lg p-4 hover:bg-gray-100">
         <h2 class="text-lg font-bold"><%= library.name %></h2>
-        <p><%= library.prefecture %></p>
-        <p>自習室の有無: <%= library.study_rooms > 0 ? 'あり' : 'なし' %></p>
+        <p><strong>都道府県:</strong> <%= library.prefecture %></p>
+        <p>自習室: <%= library.study_rooms > 0 ? 'あり' : 'なし' %></p>
+        <p><strong>休館日:</strong> <%= library.holiday %></p>
+        <p>備考: <%= truncate(library.body, length: 100) %></p>
         <div class="mt-4">
-          <%= link_to '詳細を見る', library_path(library), class: "text-blue-500 hover:text-blue-700" %>
+          <%= link_to '詳細を見る', library_path(library), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
     <% end %>

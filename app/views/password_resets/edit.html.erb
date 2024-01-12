@@ -16,7 +16,7 @@
           <%= f.label :password_confirmation, "新しいパスワード（確認）", class: "block text-gray-700 text-sm font-bold mb-2" %>
           <%= f.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", id: "user_password_confirmation" %>
         </div>
-        <%= f.submit 'リセット', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <%= f.submit 'このパスワードに変更', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
       <% end %>
       <div class="text-center mt-4">
         <%= link_to('ログインページへ', login_path, class: "text-blue-500 hover:text-blue-700") %>

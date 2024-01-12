@@ -16,8 +16,9 @@ class LibrariesController < ApplicationController
 
   def create
     @library = Library.new(library_params)
+    @library.user = current_user
     if @library.save
-      redirect_to @library, notice: '図書館が正常に作成されました。'
+      redirect_to @library, notice: '図書館を登録しました'
     else
       render :new
     end
@@ -30,7 +31,7 @@ class LibrariesController < ApplicationController
   def update
     @library = Library.find(params[:id])
     if @library.update(library_params)
-      redirect_to @library, notice: '図書館情報が更新されました。'
+      redirect_to @library, notice: '図書館の情報を更新しました'
     else
       render :edit
     end
@@ -39,13 +40,13 @@ class LibrariesController < ApplicationController
   def destroy
     @library = Library.find(params[:id])
     @library.destroy
-    redirect_to libraries_path, notice: '図書館が削除されました。'
+    redirect_to libraries_path, notice: '図書館を削除しました'
   end
 
   private
 
 # StrongParameters機能（コントローラーはフォームから送信されたパラメータを安全にハンドルしマスアサインメントの脆弱性を防ぐ）
   def library_params
-    params.require(:library).permit(:name, :prefecture, :study_rooms, :latitude, :longitude)
+    params.require(:library).permit(:name, :prefecture, :study_rooms, :body, :address, :access, :img, :holiday)
   end
 end

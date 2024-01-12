@@ -34,9 +34,9 @@
 3.ログアウト機能:機能確認済み
 4.プロフィール編集機能:機能確認済み
 5.パスワードリセット機能:機能確認済み
-6.投稿作成機能（画像投稿含む）
-7.投稿編集機能
-8.投稿閲覧機能（未ログインでも閲覧可能）
+6.投稿作成機能:機能確認済み（画像投稿未）
+7.投稿編集機能:機能確認済み
+8.投稿閲覧機能（未ログインでも閲覧可能）:機能確認済み
 9.投稿検索機能
 10.位置情報機能
 
@@ -63,10 +63,13 @@ t.datetime "created_at,updated_at"
 t.index "user_id" name: index_profiles_on_user_id
 
 libraries"テーブル
-t.string "name,prefecture"
+t.string "name,prefecture,address,access,img,holiday""
 t.integer "study_rooms"
 t.float "latitude,longitude"
 t.datetime "created_at,updated_at"
+t.bigint "user_id", null: false
+t.text "body"
+t.index "user_id", name: "index_libraries_on_user_id"
 
 postsテーブル
 t.string "title"

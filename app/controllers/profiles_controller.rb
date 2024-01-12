@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
 
     if @profile.save  
       redirect_to profile_path
-      flash[:success]= 'プロフィールが作成されました'
+      flash[:success]= 'マイページが作成されました'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,9 +25,9 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       redirect_to profile_path
-      flash[:success]= 'プロフィールが更新されました'
+      flash[:success]= 'マイページを更新しました'
     else
-      flash.now[:danger] = 'プロフィールの編集に失敗しました'
+      flash.now[:danger] = 'マイページを編集できませんでした'
       render :edit, status: :unprocessable_entity
     end
   end

@@ -1,7 +1,7 @@
 <!-- 特定の図書館の詳細表示 -->
 <div class="container mx-auto px-4">
   <h1 class="text-xl font-semibold mb-4"><%= @library.name %></h1>
-  
+
   <!-- 編集・削除ボタン -->
   <div class="mb-4">
     <%= link_to '編集', edit_library_path(@library), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
@@ -11,9 +11,16 @@
   <div class="border rounded-lg p-4">
     <h2 class="text-lg font-bold">図書館情報</h2>
     <p><strong>都道府県:</strong> <%= @library.prefecture %></p>
-    <p><strong>自習室の有無:</strong> <%= @library.study_rooms > 0 ? 'あり' : 'なし' %></p>
-    <!-- 位置情報実装時追加 -->
-    <!-- <p><strong>緯度:</strong> <%= @library.latitude %></p> -->
-    <!-- <p><strong>経度:</strong> <%= @library.longitude %></p> -->
+    <p>自習室: <%= @library.study_rooms > 0 ? 'あり' : 'なし' %></p>
+    <p><strong>休館日:</strong> <%= @library.holiday %></p>
+    <p><strong>備考:</strong> <%= @library.body %></p>
+    <p><strong>投稿日時:</strong> <%= @library.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+    <p><strong>最終編集日時:</strong> <%= @library.updated_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+    
+    <% if @library.user.present? %>
+      <p><strong>投稿者名:</strong> <%= @library.user.name %></p>
+    <% else %>
+      <p><strong>投稿者名:</strong> 不明</p>
+    <% end %>
   </div>
 </div>

@@ -1,11 +1,19 @@
 <!-- 特定の図書館の詳細表示 -->
 <div class="container mx-auto px-4">
   <h1 class="text-xl font-semibold mb-4"><%= @library.name %></h1>
+  
+  <!-- 編集・削除ボタン -->
+  <div class="mb-4">
+    <%= link_to '編集', edit_library_path(@library), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= link_to '削除', library_path(@library), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+
   <div class="border rounded-lg p-4">
     <h2 class="text-lg font-bold">図書館情報</h2>
     <p><strong>都道府県:</strong> <%= @library.prefecture %></p>
-    <p><strong>自習室数:</strong> <%= @library.study_rooms %></p>
-    <p><strong>緯度:</strong> <%= @library.latitude %></p>
-    <p><strong>経度:</strong> <%= @library.longitude %></p>
+    <p><strong>自習室の有無:</strong> <%= @library.study_rooms > 0 ? 'あり' : 'なし' %></p>
+    <!-- 位置情報実装時追加 -->
+    <!-- <p><strong>緯度:</strong> <%= @library.latitude %></p> -->
+    <!-- <p><strong>経度:</strong> <%= @library.longitude %></p> -->
   </div>
 </div>

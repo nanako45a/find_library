@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   get 'posts/edit'
   get 'posts/update'
   get 'posts/destroy'
-  get 'libraries/index'
-  get 'libraries/show'
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   get 'password_resets/create'
@@ -32,8 +31,9 @@ Rails.application.routes.draw do
   # プロフィール画面用のルート
   resource :profile, only: [:show, :edit, :update]
 
-  # 図書館一覧画面のルート
-  resources :libraries, only: [:index, :show]
+  # librariesコントローラーに対する全てのルーティングを設定
+  resources :libraries
+
 
   # 投稿一覧
   resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]

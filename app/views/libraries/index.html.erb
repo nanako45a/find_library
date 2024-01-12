@@ -1,16 +1,28 @@
-<!-- 図書館の一覧表示 -->
-<div class="container mx-auto px-4">
-  <h1 class="text-xl font-semibold mb-4">図書館一覧</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="container mx-auto max-w-7xl px-4 text-center">
+  <h1 class="text-xl font-semibold mb-12 text-gray-600">図書館一覧</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @libraries.each do |library| %>
-      <div class="border rounded-lg p-4 hover:bg-gray-100">
-        <h2 class="text-lg font-bold"><%= library.name %></h2>
-        <p><strong>都道府県:</strong> <%= library.prefecture %></p>
-        <p>自習室: <%= library.study_rooms > 0 ? 'あり' : 'なし' %></p>
-        <p><strong>休館日:</strong> <%= library.holiday %></p>
-        <p>備考: <%= truncate(library.body, length: 100) %></p>
-        <div class="mt-4">
-          <%= link_to '詳細を見る', library_path(library), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <div class="border rounded-lg p-6 hover:bg-gray-100">
+        <h2 class="text-lg font-bold text-gray-600 mb-6"><%= library.name %></h2>
+        <div class="flex items-center justify-start mb-6">
+          <div class="w-32 bg-gray-100 p-2 rounded">都道府県</div>
+          <div class="ml-8"><%= library.prefecture %></div>
+        </div>
+        <div class="flex items-center justify-start mb-6">
+          <div class="w-32 bg-gray-100 p-2 rounded">自習室</div>
+          <div class="ml-8"><%= library.study_rooms > 0 ? 'あり' : 'なし' %></div>
+        </div>
+        <div class="flex items-center justify-start mb-6">
+          <div class="w-32 bg-gray-100 p-2 rounded">休館日</div>
+          <div class="ml-8"><%= library.holiday %></div>
+        </div>
+        <!-- 備考の項目をflexコンテナで整列させる -->
+        <div class="flex items-center justify-start mb-6">
+          <div class="w-32 bg-gray-100 p-2 rounded">備考</div>
+          <div class="ml-8"><%= truncate(library.body, length: 100) %></div>
+        </div>
+        <div class="mt-6">
+          <%= link_to '詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
     <% end %>

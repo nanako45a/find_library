@@ -4,7 +4,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   # 必要に応じて、関連付けを追加します
-  # 例: has_many :posts, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   # パスワードに関するバリデーション
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }

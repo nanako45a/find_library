@@ -1,9 +1,18 @@
-<div class="container mx-auto max-w-7xl px-4 text-center">
+<div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <h1 class="text-xl font-semibold mb-12 text-gray-600">マイページ</h1>
 
   <div class="border rounded-lg p-6 hover:bg-gray-100 mx-auto max-w-md">
     <!-- プロフィール情報表示 -->
     <h2 class="text-lg font-bold text-gray-600 mb-6">プロフィール情報</h2>
+
+    <!-- アバター画像表示 -->
+    <% if @profile.avatar? %>
+      <div class="mb-6">
+        <%= image_tag @profile.avatar.url, class: "h-24 w-24 rounded-full mx-auto" %>
+      </div>
+    <% else %>
+      <div class="mb-6">アバター画像はありません。</div>
+    <% end %>
 
     <div class="flex items-center justify-start mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded">名前</div>
@@ -14,10 +23,30 @@
       <div class="w-32 bg-gray-100 p-2 rounded">メールアドレス</div>
       <div class="ml-8 text-gray-600"><%= @user.email %></div>
     </div>
+  
+    <!-- 既存の編集ボタン -->
+    <div class="text-center mt-6">
+      <%= link_to 'プロフィールを編集する', edit_profile_path, class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
   </div>
 
-  <!-- 編集ボタン -->
-  <div class="text-center mt-4">
-    <%= link_to 'プロフィールを編集する', edit_profile_path, class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  <div class="mt-12 mx-auto max-w-md">
+    <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @profile.name %> の投稿</h2>
+    <% @libraries.each do |library| %>
+      <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+        <h3 class="font-bold text-gray-800"><%= library.name %></h3>
+        <p class="text-gray-600"><%= library.body %></p>
+        <div class="mt-4">
+          <%= link_to '図書館の詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        </div>
+      </div>
+    <% end %>
   </div>
+
+  <!-- 新しいボタンを追加 -->
+  <div class="text-center mt-6">
+    <%= link_to '図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= link_to '図書館を登録する', new_library_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+  </div>
+  <div style="margin-bottom: 100px;"></div>
 </div>

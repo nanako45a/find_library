@@ -1,6 +1,12 @@
-<div class="container mx-auto max-w-7xl px-4 text-center">
+<div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <h1 class="text-xl font-semibold mb-12 text-gray-600">図書館一覧</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+  <div class="text-center mt-3">
+    <%= link_to '図書館を登録する', new_library_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+    <%= link_to 'マイページ', profile_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
     <% @libraries.each do |library| %>
       <div class="border rounded-lg p-6 hover:bg-gray-100">
         <h2 class="text-lg font-bold text-gray-600 mb-6"><%= library.name %></h2>
@@ -8,23 +14,37 @@
           <div class="w-32 bg-gray-100 p-2 rounded">都道府県</div>
           <div class="ml-8"><%= library.prefecture %></div>
         </div>
+
         <div class="flex items-center justify-start mb-6">
           <div class="w-32 bg-gray-100 p-2 rounded">自習室</div>
           <div class="ml-8"><%= library.study_rooms > 0 ? 'あり' : 'なし' %></div>
         </div>
+
+        <!-- 画像表示 -->
+        <% if library.img.present? %>
+          <div class="mb-6">
+            <%= image_tag library.img.url, class: "max-w-xs h-auto rounded mx-auto" %>
+          </div>
+        <% else %>
+          <div class="mb-6">画像はありません。</div>
+        <% end %>
+
         <div class="flex items-center justify-start mb-6">
           <div class="w-32 bg-gray-100 p-2 rounded">休館日</div>
           <div class="ml-8"><%= library.holiday %></div>
         </div>
+
         <!-- 備考の項目をflexコンテナで整列させる -->
         <div class="flex items-center justify-start mb-6">
           <div class="w-32 bg-gray-100 p-2 rounded">備考</div>
           <div class="ml-8"><%= truncate(library.body, length: 100) %></div>
         </div>
+
         <div class="mt-6">
           <%= link_to '詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
     <% end %>
   </div>
+  <div style="margin-bottom: 150px;"></div>
 </div>

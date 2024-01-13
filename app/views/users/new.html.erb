@@ -1,5 +1,5 @@
 <!-- ユーザー登録 -->
-<div class="container mx-auto max-w-7xl px-4 text-center">
+<div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <h1 class="text-xl font-semibold mb-12 text-gray-600">ユーザー登録</h1>
 
   <%= form_with model: @user, url: users_path, local: true, class: "space-y-6 max-w-md mx-auto" do |form| %>
@@ -41,4 +41,10 @@
       </div>
     </div>
   <% end %>
+
+  <div class="text-center mt-6">
+    <%= link_to 'トップページ', root_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= link_to '図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div style="margin-bottom: 100px;"></div>
 </div>

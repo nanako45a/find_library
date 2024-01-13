@@ -1,11 +1,11 @@
 <!-- 図書館編集画面 -->
-<div class="container mx-auto max-w-7xl px-4 text-center">
+<div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <%= form_with(model: @library, local: true, class: "mx-auto max-w-md") do |form| %>
-    <h1 class="text-xl font-semibold mb-12 text-gray-600"><%= @library.name %></h1>
+    <h1 class="text-xl font-semibold mb-12 text-gray-600"><%= @library.name %> の情報を編集</h1>
 
     <!-- 保存ボタン -->
     <div class="text-center mt-8">
-      <%= form.submit "保存", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= form.submit "この内容に変更する", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="mb-4"></div>
@@ -51,6 +51,14 @@
         </div>
       </div>
 
+      <!-- 画像アップロードのフィールド -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded text-center">画像</div>
+        <div class="ml-8">
+            <%= form.file_field :img, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
+        </div>
+      </div>
+
       <div class="flex items-center justify-center mb-6">
         <div class="w-32 bg-gray-100 p-2 rounded text-center">備考</div>
         <div class="ml-8">
@@ -59,4 +67,10 @@
       </div>
     </div>
   <% end %>
+
+  <div class="text-center mt-6">
+    <%= link_to '図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= link_to 'マイページ', profile_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+  </div>
+  <div style="margin-bottom: 40px;"></div>
 </div>

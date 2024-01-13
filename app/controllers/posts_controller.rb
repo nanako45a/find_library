@@ -6,7 +6,8 @@ class PostsController < ApplicationController
 
   # 特定の投稿を取得
   def show
-    @post = Post.find(params[:id])
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   # 新しい投稿のためのフォームを表示

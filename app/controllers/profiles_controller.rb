@@ -2,7 +2,9 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
 
-  def show; end
+  def show
+    @libraries = Library.where(user_id: @user.id)
+  end
 
   def new
     @profile = Profile.new
@@ -39,7 +41,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :language, :introduction, :avatar, :avatar_cache,:hour, :minutes)
+    params.require(:profile).permit(:name, :avatar, :avatar_cache)
   end
 
   def set_user

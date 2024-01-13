@@ -1,4 +1,4 @@
-<div class="container mx-auto max-w-7xl px-4 text-center">
+<div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <h1 class="text-xl font-semibold mb-12 text-gray-600">プロフィールを編集</h1>
 
   <%= form_with(model: @profile, local: true) do |form| %>
@@ -31,10 +31,23 @@
         </div>
       </div>
 
+      <!-- アバター画像アップロードフィールド -->
+      <div class="flex items-center justify-start mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">アバター</div>
+        <div class="ml-8">
+          <%= form.file_field :avatar, class: "shadow appearance-none border rounded py-2 px-4 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+      </div>
+
       <!-- 更新ボタン -->
-      <div class="text-center mt-8">
+      <div class="text-center mt-2">
         <%= form.submit "更新", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
       </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <%= link_to 'マイページ', profile_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+      <%= link_to '図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
     </div>
   <% end %>
 </div>

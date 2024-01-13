@@ -1,8 +1,8 @@
 <!-- 新しい図書館を追加 -->
-<div class="container mx-auto max-w-7xl px-4 text-center">
+<div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <h1 class="text-xl font-semibold mb-12 text-gray-600">新しい図書館を追加</h1>
 
-  <%= form_with(model: @library, local: true) do |form| %>
+  <%= form_with(model: @library, local: true, html: { multipart: true }) do |form| %>
     <% if @library.errors.any? %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
         <strong class="font-bold">エラーが発生しました：</strong>
@@ -47,6 +47,14 @@
         </div>
       </div>
 
+      <!-- 画像アップロードのフィールド -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">画像</div>
+        <div class="ml-8 w-48">
+            <%= form.file_field :img, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+      </div>
+
       <!-- 備考のテキストエリア -->
       <div class="flex items-center justify-center mb-6">
         <div class="w-32 bg-gray-100 p-2 rounded">備考</div>
@@ -61,4 +69,10 @@
       </div>
     </div>
   <% end %>
+
+  <div class="text-center mt-6">
+    <%= link_to '図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= link_to 'マイページ', profile_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+  </div>
+  <div style="margin-bottom: 100px;"></div>
 </div>

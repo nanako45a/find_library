@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if @profile.update(profile_params)
+    if @profile.update(profile_params) && @user.update(user_params)
       redirect_to profile_path
       flash[:success]= 'マイページを更新しました'
     else
@@ -43,6 +43,10 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:name, :avatar, :avatar_cache)
   end
+
+  def user_params
+    params.require(:profile).require(:user).permit(:email)
+  end  
 
   def set_user
     @user = current_user

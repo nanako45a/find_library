@@ -16,7 +16,7 @@
 
     <div class="flex items-center justify-start mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded">名前</div>
-      <div class="ml-8 text-xl"><%= @profile.name %></div>
+      <div class="ml-8 text-xl"><%= @user.name %></div>
     </div>
 
     <div class="flex items-center justify-start mb-6">
@@ -31,7 +31,7 @@
   </div>
 
   <div class="mt-12 mx-auto max-w-md">
-    <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @profile.name %> の投稿</h2>
+    <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @user.name %> の投稿</h2>
     <% @libraries.each do |library| %>
       <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
         <h3 class="font-bold text-gray-800"><%= library.name %></h3>

@@ -50,6 +50,9 @@ https://www.figma.com/file/L5U91EVX2ycd0E1gv6tJvb/%E7%84%A1%E9%A1%8C?type=design
 ■ ER図
 https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b
 
+■ アプリケーションのURL
+https://cryptic-headland-70938-ab332c316ec4.herokuapp.com/
+
 usersテーブル:
 t.string "email,crypted_password,salt,name","reset_password_token"
 t.datetime "created_at,updated_at","reset_password_token_expires_at,reset_password_email_sent_at"
@@ -78,3 +81,4 @@ t.bigint "user_id,library_id"
 t.datetime "created_at,updated_at"
 t.index "library_id", name: "index_posts_on_library_id"
 t.index "user_id", name: "index_posts_on_user_id"
+

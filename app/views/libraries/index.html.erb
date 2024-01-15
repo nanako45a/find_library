@@ -1,7 +1,31 @@
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <h1 class="text-xl font-semibold mb-12 text-gray-600">図書館一覧</h1>
 
-  <div class="text-center mt-3">
+  <%= form_with url: libraries_path, method: :get, local: true, class: "flex flex-wrap justify-center gap-4 mb-8" do |form| %>
+    <div class="mb-4">
+      <%= form.label :name, '図書館名', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.select :name, options_for_select(@unique_library_names, selected: params[:name]), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :prefecture, '都道府県', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.select :prefecture, options_for_select(@unique_prefectures, selected: params[:prefecture]), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+  
+    <div class="mb-4">
+      <%= form.label :study_rooms, '自習室の有無', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.select :study_rooms, options_for_select([['あり', true], ['なし', false]], selected: params[:study_rooms]), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+  
+    <div class="mb-4">
+      <%= form.label :holiday, '休館日', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :holiday, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+  
+    <%= form.submit '検索', class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-1 px-8 rounded focus:outline-none focus:shadow-outline" %>
+  <% end %>
+
+  <div class="text-center mt-9">
     <%= link_to '図書館を登録する', new_library_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
     <%= link_to 'マイページ', profile_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
   </div>

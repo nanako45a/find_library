@@ -1,6 +1,8 @@
 class LibrariesController < ApplicationController
   def index
-    @libraries = Library.all
+    @unique_library_names = Library.unique_library_names
+    @unique_prefectures = Library.unique_prefectures
+    @libraries = Library.search(params[:name], params[:prefecture], params[:study_rooms], params[:holiday])
   end
 
   def show

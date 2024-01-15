@@ -77,13 +77,13 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'smtp.office365.com',  # OutlookのSMTPサーバー
     port:                 587,
-    domain:               'findlibrary.onrender.com',
-    user_name:            ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PASSWORD'],
-    authentication:       'plain',
-    enable_starttls_auto: true 
+    domain:               'findlibrary.onrender.com',  # あなたのドメイン名
+    user_name:            ENV['MAIL_USERNAME'],  # 環境変数からOutlookのユーザー名を取得
+    password:             ENV['MAIL_PASSWORD'],  # 環境変数からOutlookのパスワードを取得
+    authentication:       'login',
+    enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.

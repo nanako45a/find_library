@@ -29,14 +29,14 @@
 また、位置情報を記載し、足を運びやすい場所に位置しているかも伏せて確認することができる。
 
 ■ 機能候補
-1.ユーザー登録機能:機能確認済み（avatar未）
-2.ログイン機能:機能確認済み
-3.ログアウト機能:機能確認済み
-4.プロフィール編集機能:機能確認済み
-5.パスワードリセット機能:機能確認済み
-6.投稿作成機能:機能確認済み（画像投稿未）
-7.投稿編集機能:機能確認済み
-8.投稿閲覧機能（未ログインでも閲覧可能）:機能確認済み
+1.ユーザー登録機能
+2.ログイン機能
+3.ログアウト機能
+4.プロフィール編集機能
+5.パスワードリセット機能
+6.投稿作成機能（画像投稿含む）
+7.投稿編集機能
+8.投稿閲覧機能（未ログインでも閲覧可能）
 9.投稿検索機能
 10.位置情報機能
 
@@ -52,33 +52,3 @@ https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b
 
 ■ アプリケーションのURL
 https://cryptic-headland-70938-ab332c316ec4.herokuapp.com/
-
-usersテーブル:
-t.string "email,crypted_password,salt,name","reset_password_token"
-t.datetime "created_at,updated_at","reset_password_token_expires_at,reset_password_email_sent_at"
-t.index "email" name: index_users_on_email
-t.integer "access_count_to_reset_password_page"
-
-profileテーブル:
-t.bigint "user_id"
-t.string "name"
-t.datetime "created_at,updated_at"
-t.index "user_id" name: index_profiles_on_user_id
-
-libraries"テーブル
-t.string "name,prefecture,address,access,img,holiday""
-t.integer "study_rooms"
-t.float "latitude,longitude"
-t.datetime "created_at,updated_at"
-t.bigint "user_id", null: false
-t.text "body"
-t.index "user_id", name: "index_libraries_on_user_id"
-
-postsテーブル
-t.string "title"
-t.text "body"
-t.bigint "user_id,library_id"
-t.datetime "created_at,updated_at"
-t.index "library_id", name: "index_posts_on_library_id"
-t.index "user_id", name: "index_posts_on_user_id"
-

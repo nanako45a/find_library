@@ -25,4 +25,13 @@ Rails.application.routes.draw do
 
   # ルートパスの定義
   root "top#index"
+
+  # 利用規約ページ用のルート
+  get 'terms', to: 'pages#terms', as: :terms
+
+  # プライバシーポリシーページ用のルート
+  get 'privacy_policy', to: 'pages#privacy_policy', as: :privacy_policy
+
+  # お問い合わせページ用のルート
+  get 'contact', to: 'pages#contact', as: :contact
 end

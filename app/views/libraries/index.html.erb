@@ -14,9 +14,9 @@
   
     <div class="mb-4">
       <%= form.label :study_rooms, '自習室の有無', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.select :study_rooms, options_for_select([['あり', true], ['なし', false]], selected: params[:study_rooms]), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= form.select :study_rooms, options_for_select([['あり', 1], ['なし', 0]], selected: params[:study_rooms].present? ? params[:study_rooms].to_i : nil), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
-  
+
     <div class="mb-4">
       <%= form.label :holiday, '休館日', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :holiday, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>

@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   # 必要に応じて、関連付けを追加します
   has_many :posts, dependent: :destroy
+  has_many :bookmarks
+  has_many :bookmarked_libraries, through: :bookmarks, source: :library
 
   # パスワードに関するバリデーション
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
@@ -13,6 +15,11 @@ class User < ApplicationRecord
   validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
   # メールアドレスの一意性と存在を検証
   validates :email, uniqueness: true, presence: true
+
+  # ユーザーがブックマークした図書館の一覧を取得するメソッド
+  def bookmarked_libraries
+    bookmarks.includes(:library).map(&:library)
+  end
 
   # その他の属性に関するバリデーション
   # 例: validates :name, presence: true, length: { maximum: 255 }

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # ユーザーがログインしていることを要求
+
   before_action :require_login
 
   private

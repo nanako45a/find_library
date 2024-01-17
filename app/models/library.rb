@@ -1,6 +1,9 @@
 class Library < ApplicationRecord
   mount_uploader :img, ImageUploader
 
+  has_many :bookmarks
+  has_many :users, through: :bookmarks
+
   # 図書館名と都道府県名のフィールドが空でないことを確認
   validates :name, presence: true
   validates :prefecture, presence: true
@@ -12,7 +15,7 @@ class Library < ApplicationRecord
     libraries = all
     libraries = libraries.where("name ILIKE ?", "%#{name}%") if name.present?
     libraries = libraries.where(prefecture: prefecture) if prefecture.present?
-    libraries = libraries.where(study_rooms: study_rooms) unless study_rooms.blank?
+    libraries = libraries.where(study_rooms: study_rooms.to_i) if study_rooms.present?
     libraries = libraries.where("holiday ILIKE ?", "%#{holiday}%") if holiday.present?
     libraries
   end

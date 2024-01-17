@@ -1,4 +1,6 @@
 class LibrariesController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+
   def index
     @unique_library_names = Library.unique_library_names
     @unique_prefectures = Library.unique_prefectures

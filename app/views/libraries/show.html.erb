@@ -1,9 +1,18 @@
 <!-- 特定の図書館の詳細表示 -->
 <div class="container mx-auto max-w-7xl px-4 text-center my-20">
-  <h1 class="text-xl font-semibold mb-12 text-gray-600"><%= @library.name %></h1>
+  <div class="flex justify-center items-center mb-12">
+    <h1 class="text-xl font-semibold text-gray-600 mr-4"><%= @library.name %></h1>
+    <!-- ブックマークが存在する場合に解除ボタン表示 -->
+    <% bookmark = current_user.bookmarks.find_by(library_id: @library.id) %>
+    <% if bookmark %>
+      <%= link_to 'お気に入りを解除', library_bookmark_path(@library, bookmark), data: { turbo_method: :delete }, class: "bg-red-200 hover:bg-red-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <% else %>
+      <%= link_to 'お気に入りに登録する', library_bookmarks_path(@library), data: { turbo_method: :post }, class: "bg-green-200 hover:bg-green-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <% end %>
+  </div>
 
   <!-- 編集・削除ボタン -->
-  <div class="mb-12 text-center">
+  <div class="text-center mb-12">
     <%= link_to '編集', edit_library_path(@library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     <%= link_to '削除', library_path(@library), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
@@ -19,7 +28,6 @@
       <div class="ml-8 text-center w-48"><%= @library.study_rooms > 0 ? 'あり' : 'なし' %></div>
     </div>
 
-    <!-- 画像表示 -->
     <% if @library.img.present? %>
       <div class="flex justify-center mb-6">
         <div class="w-auto">
@@ -34,18 +42,22 @@
       <div class="w-32 bg-gray-100 p-2 rounded text-center">休館日</div>
       <div class="ml-8 text-center w-48"><%= @library.holiday %></div>
     </div>
+
     <div class="flex items-center justify-center mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded text-center">備考</div>
       <div class="ml-8 text-center w-48"><%= @library.body %></div>
     </div>
+
     <div class="flex items-center justify-center mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded text-center">投稿日時</div>
       <div class="ml-8 text-center w-48"><%= @library.created_at.strftime("%Y年%m月%d日 %H:%M") %></div>
     </div>
+
     <div class="flex items-center justify-center mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded text-center">最終編集日時</div>
       <div class="ml-8 text-center w-48"><%= @library.updated_at.strftime("%Y年%m月%d日 %H:%M") %></div>
     </div>
+
     <% if @library.user.present? %>
       <div class="flex items-center justify-center mb-6">
         <div class="w-32 bg-gray-100 p-2 rounded text-center">投稿者名</div>

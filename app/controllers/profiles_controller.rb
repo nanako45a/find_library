@@ -3,7 +3,10 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
+    # ユーザーが投稿した図書館を取得
     @libraries = Library.where(user_id: @user.id)
+    # ユーザーがブックマークした図書館を取得
+    @bookmarked_libraries = @user.bookmarked_libraries
   end
 
   def new

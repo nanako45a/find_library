@@ -6,16 +6,16 @@ class BookmarksController < ApplicationController
     if bookmark.save
       redirect_to @library, notice: 'お気に入りに登録しました'
     else
-      redirect_to @library, alert: 'ブックマークの登録に失敗しました'
+      redirect_to @library, alert: 'お気に入りの登録に失敗しました'
     end
   end
 
   def destroy
     bookmark = current_user.bookmarks.find_by(library_id: @library.id)
     if bookmark.destroy
-      redirect_to @library, notice: 'ブックマークを解除しました'
+      redirect_to @library, notice: 'お気に入りを解除しました'
     else
-      redirect_to @library, alert: 'ブックマークの解除に失敗しました'
+      redirect_to @library, alert: 'お気に入りの解除に失敗しました'
     end
   end
 

@@ -30,6 +30,8 @@
     </div>
   </div>
 
+  <hr class="my-4 border-gray-300">
+
   <div class="mt-12 mx-auto max-w-md">
     <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @user.name %> の投稿</h2>
     <% @libraries.each do |library| %>
@@ -41,6 +43,8 @@
         </div>
       </div>
     <% end %>
+
+    <hr class="my-4 border-gray-300">
 
     <!-- ブックマークした図書館の一覧表示 -->
     <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @user.name %>のお気に入りの図書館</h2>

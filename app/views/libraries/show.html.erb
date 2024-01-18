@@ -31,7 +31,7 @@
     <% if @library.img.present? %>
       <div class="flex justify-center mb-6">
         <div class="w-auto">
-          <%= image_tag @library.img.url, class: "max-w-xs h-auto rounded mx-auto" %>
+          <%= image_tag @library.img.url, class: "max-w-36 h-auto rounded mx-auto" %>
         </div>
       </div>
     <% else %>
@@ -72,8 +72,6 @@
   </div>
 
   <div class="text-center mt-6">
-    <%= link_to '図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-    <%= link_to '別の図書館を登録する', new_library_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+    <%= link_to '他の図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     <%= link_to 'マイページ', profile_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
   </div>
-</div>

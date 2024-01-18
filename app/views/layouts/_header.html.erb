@@ -1,16 +1,16 @@
-<header class="bg-purple-300 text-white p-4">
+<header class="bg-gray-200 text-gray-700 p-6">
   <div class="container mx-auto flex justify-between items-center">
-    <h1 class="text-lg font-bold">FindLibrary</h1>
+    <h1 class="text-lg font-bold mr-4">
+      <%= link_to 'FindLibrary', root_path, class: "text-gray-700 hover:text-blue-200" %>
+    </h1>
     <nav>
       <ul class="flex space-x-4">
-        <li><%= link_to 'トップページ', root_path, class: "text-white hover:text-blue-200" %></li>
-        <li><%= link_to '図書館を探す', libraries_path, class: "text-white hover:text-blue-200" %></li>
-        <li><%= link_to '図書館を登録する', new_library_path, class: "text-white hover:text-blue-200" %></li>
-        <li><%= link_to 'ユーザー登録', new_user_path, class: "text-white hover:text-blue-200" %></li>
-        <li><%= link_to 'マイページ', profile_path, class: "text-white hover:text-blue-200" %></li>
-        <li><%= link_to 'ログイン', login_path, class: "text-white hover:text-blue-200" %></li>
-        <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-white hover:text-blue-200" %></li>
-        <!-- <li><%= link_to '新規投稿', new_post_path, class: "text-white hover:text-blue-200" %></li> -->
+        <li><%= link_to '図書館検索', libraries_path, class: "text-sm text-gray-700 hover:text-blue-200" %></li>
+        <li><%= link_to '図書館登録', new_library_path, class: "text-sm text-gray-700 hover:text-blue-200" %></li>
+        <li><%= link_to 'ユーザー登録', new_user_path, class: "text-sm text-gray-700 hover:text-blue-200" %></li>
+        <li><%= link_to 'マイページ', profile_path, class: "text-sm text-gray-700 hover:text-blue-200" %></li>
+        <li><%= link_to 'ログイン', login_path, class: "text-sm text-gray-700 hover:text-blue-200" %></li>
+        <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-sm text-gray-700 hover:text-blue-200" %></li>
       </ul>
     </nav>
   </div>

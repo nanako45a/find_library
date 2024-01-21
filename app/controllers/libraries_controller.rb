@@ -1,5 +1,6 @@
 class LibrariesController < ApplicationController
-  skip_before_action :require_login, only: [:index]
+  # ログインしていなくても図書館一覧、詳細画面はアクセスできるようにする
+  skip_before_action :require_login, only: [:index, :show]
 
   def index
     @unique_library_names = Library.unique_library_names

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  # 以下削除予定
+
   # 投稿の一覧を取得
   def index
     @posts = Post.all

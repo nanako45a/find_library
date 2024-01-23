@@ -6,13 +6,13 @@
     <h2 class="text-lg font-bold text-gray-600 mb-6">プロフィール情報</h2>
 
     <!-- アバター画像表示 -->
-    <% if @profile.avatar? %>
-      <div class="mb-6">
-        <%= image_tag @profile.avatar.url, class: "h-24 w-24 rounded-full mx-auto" %>
-      </div>
-    <% else %>
-      <div class="mb-6">アバター画像はありません。</div>
-    <% end %>
+    <!-- % if @user.avatar? % -->
+    <!-- div class="mb-6" -->
+    <!-- %= image_tag @user.avatar.url, class: "h-24 w-24 rounded-full mx-auto" % -->
+    <!-- /div -->
+    <!-- % else % -->
+    <!-- div class="mb-6">アバター画像はありません。</div -->
+    <!-- % end % -->
 
     <div class="flex items-center justify-start mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded">名前</div>
@@ -24,7 +24,7 @@
       <div class="ml-8 text-gray-600"><%= @user.email %></div>
     </div>
   
-    <!-- 既存の編集ボタン -->
+    <!-- プロフィール編集画面へのボタン -->
     <div class="text-center mt-6">
       <%= link_to 'プロフィールを編集する', edit_profile_path, class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     </div>
@@ -46,7 +46,7 @@
 
     <hr class="my-4 border-gray-300">
 
-    <!-- ブックマークした図書館の一覧表示 -->
+    <!-- ユーザーがお気に入り登録した図書館の表示 -->
     <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @user.name %>のお気に入りの図書館</h2>
     <% @bookmarked_libraries.each do |library| %>
       <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
@@ -58,7 +58,7 @@
       </div>
     <% end %>
 
-  <!-- 新しいボタンを追加 -->
+  <!-- 図書館一覧、図書館登録画面へのボタン -->
   <div class="text-center mt-6">
     <%= link_to '図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     <%= link_to '図書館を登録する', new_library_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>

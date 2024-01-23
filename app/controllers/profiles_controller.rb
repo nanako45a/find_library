@@ -1,6 +1,5 @@
 class ProfilesController < ApplicationController
-  # ユーザー詳細、編集画面にアクセスする前にset_profileとset_userメソッドを呼び出しユーザー情報を取得
-  before_action :set_profile, only: [:show, :edit, :update]
+  before_action :require_login
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
@@ -16,22 +15,8 @@ class ProfilesController < ApplicationController
 
   def edit; end
 
-  # ユーザー登録と同時にマイページは作成されるためcreateアクションは不要かも（削除検討）
-  def create
-    @profile = Profile.new(profile_params)
-    @profile.user = current_user
-
-    if @profile.save  
-      redirect_to profile_path
-      flash[:success]= 'マイページが作成されました'
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
-  # 
   def update
-    if @profile.update(profile_params) && @user.update(user_params)
+    if @user.update(user_params)
       redirect_to profile_path
       flash[:success]= 'マイページを更新しました'
     else
@@ -42,17 +27,8 @@ class ProfilesController < ApplicationController
 
   private
 
-  # ログイン中のユーザー情報を取得し@profileに格納
-  def set_profile
-    @profile = current_user.profile
-  end
-
-  def profile_params
-    params.require(:profile).permit(:name, :avatar, :avatar_cache)
-  end
-
   def user_params
-    params.require(:profile).require(:user).permit(:email)
+    params.require(:user).permit(:name, :email, :avatar)
   end  
 
   # ログイン中のユーザー情報を@userに格納

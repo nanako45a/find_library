@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
-  # ログインしていないユーザーでもnew,createアクションにアクセスできるように設定（require_loginフィルターをスキップ）
-  skip_before_action :require_login, only: [:new, :create]
- 
   def new
     @user = User.new
   end
 
+  # 新規登録後自動ログイン
   def create
     @user = User.new(user_params)
     if @user.save
+      auto_login(@user)
       @user.create_profile
-      redirect_to login_path, flash: { success: t('.success') }
+      redirect_to profile_path
+      flash[:success]= 'ユーザーを登録しました'
     else
-      flash.now[:error] = t('.fail')
+      flash.now[:danger] = 'ユーザーを登録できませんでした'
       render :new, status: :unprocessable_entity
     end
   end

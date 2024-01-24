@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  # ログイン要求をスキップ
-  skip_before_action :require_login
 
   def terms
     # 利用規約ページ用のアクション

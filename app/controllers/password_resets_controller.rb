@@ -1,6 +1,4 @@
 class PasswordResetsController < ApplicationController
-  # ログイン要求をスキップ
-  skip_before_action :require_login
 
   # パスワードリセット申請画面へレンダリング
   def new; end

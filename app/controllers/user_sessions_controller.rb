@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  before_action :require_login, only: [:destroy]
 
   def new
     # ログインページを表示
@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
 
     if @user
       flash[:success] = 'ログインしました'
-      redirect_back_or_to profile_path #投稿一覧機能実装したらposts_pathに変更
+      redirect_back_or_to profile_path
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new, status: :unprocessable_entity

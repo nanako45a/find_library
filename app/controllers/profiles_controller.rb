@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :require_login
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user
 
   def show
     # ユーザーが投稿した図書館を取得

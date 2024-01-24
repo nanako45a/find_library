@@ -34,28 +34,36 @@
 
   <div class="mt-12 mx-auto max-w-md">
     <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @user.name %> の投稿</h2>
-    <% @libraries.each do |library| %>
-      <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
-        <h3 class="font-bold text-gray-800"><%= library.name %></h3>
-        <p class="text-gray-600"><%= library.body %></p>
-        <div class="mt-4">
-          <%= link_to '図書館の詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <% if @libraries.empty? %>
+      <div class="text-center">投稿された図書館はありません。</div>
+    <% else %>
+      <% @libraries.each do |library| %>
+        <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+          <h3 class="font-bold text-gray-800"><%= library.name %></h3>
+          <p class="text-gray-600"><%= library.body %></p>
+          <div class="mt-4">
+            <%= link_to '図書館の詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
 
     <hr class="my-4 border-gray-300">
 
     <!-- ユーザーがお気に入り登録した図書館の表示 -->
-    <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @user.name %>のお気に入りの図書館</h2>
-    <% @bookmarked_libraries.each do |library| %>
-      <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
-        <h3 class="font-bold text-gray-800"><%= library.name %></h3>
-        <p class="text-gray-600"><%= library.body %></p>
-        <div class="mt-4">
-          <%= link_to '図書館の詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <h2 class="text-lg font-bold text-gray-600 mb-6"><%= @user.name %> のお気に入りの図書館</h2>
+    <% if @bookmarked_libraries.empty? %>
+      <div class="text-center">お気に入りに登録された図書館はありません。</div>
+    <% else %>
+      <% @bookmarked_libraries.each do |library| %>
+        <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+          <h3 class="font-bold text-gray-800"><%= library.name %></h3>
+          <p class="text-gray-600"><%= library.body %></p>
+          <div class="mt-4">
+            <%= link_to '図書館の詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
 
   <!-- 図書館一覧、図書館登録画面へのボタン -->

@@ -1,6 +1,6 @@
 class LibrariesController < ApplicationController
-  # ログインしていなくても図書館一覧、詳細画面はアクセスできるようにする
-  skip_before_action :require_login, only: [:index, :show]
+  # 図書館登録、編集、削除機能実行前にログインしていることを確認
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     # 投稿済みの図書館名、都道府県名を格納

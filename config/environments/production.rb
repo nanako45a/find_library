@@ -3,8 +3,8 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Code is not reloaded between requests.
-  config.enable_reloading = false
+  # コードのキャッシュを有効にし、リクエスト間でのコードの再読み込みを防ぐ
+  config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -21,7 +21,8 @@ Rails.application.configure do
   # config.require_master_key = true
 
   # Disable serving static files from `public/`, relying on NGINX/Apache to do so instead.
-  # config.public_file_server.enabled = false
+  # 静的ファイルのサービングを条件付きで有効化
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -72,17 +73,17 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "find_library_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = Settings.default_url_options.to_h
+  config.action_mailer.default_url_options = { protocol: 'https', host: 'findlibrary.net' }
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.office365.com',  # OutlookのSMTPサーバー
+    address:              'smtp.gmail.com',  # gmailのSMTPサーバー
     port:                 587,
-    domain:               'findlibrary.onrender.com',  # あなたのドメイン名
-    user_name:            ENV['MAIL_USERNAME'],  # 環境変数からOutlookのユーザー名を取得
-    password:             ENV['MAIL_PASSWORD'],  # 環境変数からOutlookのパスワードを取得
-    authentication:       'login',
+    domain:               'gmail.com',  # ドメイン名
+    user_name:            ENV['MAIL_USERNAME'],  # 環境変数からgmailのユーザー名を取得
+    password:             ENV['MAIL_PASSWORD'],  # 環境変数からgmailのパスワードを取得
+    authentication:       'plain',
     enable_starttls_auto: true
   }
 

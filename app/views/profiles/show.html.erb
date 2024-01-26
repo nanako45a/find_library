@@ -5,7 +5,7 @@
     <!-- プロフィール情報表示 -->
     <h2 class="text-lg font-bold text-gray-600 mb-6">プロフィール情報</h2>
 
-    <!-- アバター画像表示 -->
+    <!-- アバター画像またはデフォルトアバター画像を表示 -->
     <div class="mb-6">
       <% if @user.avatar? %>
         <%= image_tag @user.avatar.url, class: "h-24 w-24 rounded-full mx-auto" %>

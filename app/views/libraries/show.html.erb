@@ -69,18 +69,18 @@
       <div class="ml-8 text-center w-48"><%= @library.updated_at.strftime("%Y年%m月%d日 %H:%M") %></div>
     </div>
 
-    <% if @library.user.present? %>
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">投稿者名</div>
-        <div class="ml-8 text-center w-48"><%= @library.user.name %></div>
+    <!-- 投稿者名とアバターの表示 -->
+    <div class="flex items-center justify-center mb-6">
+      <div class="w-32 bg-gray-100 p-2 rounded text-center">投稿者名</div>
+      <div class="ml-8 w-48 flex items-center justify-center">
+        <% if @library.user.avatar? %>
+          <%= image_tag @library.user.avatar.url, class: "h-8 w-8 rounded-full mr-2" %>
+        <% else %>
+          <%= image_tag 'default_avatar.png', class: "h-8 w-8 rounded-full mr-2" %>
+        <% end %>
+        <span class="text-center"><%= @library.user.name %></span>
       </div>
-    <% else %>
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">投稿者名</div>
-        <div class="ml-8 text-center w-48">不明</div>
-      </div>
-    <% end %>
-  </div>
+    </div>
 
   <div class="text-center mt-6">
     <%= link_to '他の図書館を探す', libraries_path, class: "bg-blue-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>

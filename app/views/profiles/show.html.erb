@@ -6,13 +6,13 @@
     <h2 class="text-lg font-bold text-gray-600 mb-6">プロフィール情報</h2>
 
     <!-- アバター画像表示 -->
-    <!-- % if @user.avatar? % -->
-    <!-- div class="mb-6" -->
-    <!-- %= image_tag @user.avatar.url, class: "h-24 w-24 rounded-full mx-auto" % -->
-    <!-- /div -->
-    <!-- % else % -->
-    <!-- div class="mb-6">アバター画像はありません。</div -->
-    <!-- % end % -->
+    <% if @user.avatar? %>
+      <div class="mb-6">
+        <%= image_tag @user.avatar.url, class: "h-24 w-24 rounded-full mx-auto" %>
+      </div>
+    <% else %>
+       <div class="mb-6">アバター画像はありません。</div>
+    <% end %>
 
     <div class="flex items-center justify-start mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded">名前</div>

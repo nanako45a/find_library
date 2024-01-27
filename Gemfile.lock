@@ -111,6 +111,10 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     deep_merge (1.2.2)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
     dry-configurable (1.1.0)
@@ -381,6 +385,7 @@ DEPENDENCIES
   carrierwave
   config
   debug
+  dotenv-rails
   fog-aws
   importmap-rails
   jbuilder

@@ -3,8 +3,14 @@
     <h1 class="text-lg font-bold mr-4">
       <%= link_to 'FindLibrary', root_path, class: "text-gray-700 hover:text-blue-200" %>
     </h1>
+    <!-- ハンバーガーメニューアイコン -->
+    <div id="menu-toggle" class="md:hidden cursor-pointer">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+    </div>
+    <!-- メニュー -->
     <nav>
-      <ul class="flex space-x-4">
+      <ul id="menu" class="hidden md:flex space-x-4">
+        <!-- メニュー項目 -->
         <!-- 図書館検索は常に表示 -->
         <li><%= link_to '図書館検索', libraries_path, class: "text-sm text-gray-700 hover:text-blue-200" %></li>
 
@@ -28,3 +34,12 @@
     </nav>
   </div>
 </header>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector("#menu-toggle");
+    const menu = document.querySelector("#menu");
+    menuToggle.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  });
+</script>

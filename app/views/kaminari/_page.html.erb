@@ -1,0 +1,18 @@
+<!-- ページネーションにtailwindを適用 -->
+<!-- 個々のページ番号 -->
+<%# Link showing page number
+  - available local variables
+    page:          a page object for "this" page
+    url:           url to this page
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+-%>
+<!-- 現在のページはグレーで表示 -->
+<span class="<%= 'bg-gray-200 text-gray-800' if page.current? %> w-10 h-10 flex justify-center items-center mx-2">
+  <%= link_to_unless page.current?, page, url, {
+      class: 'w-10 h-10 flex justify-center items-center mx-2' + (page.current? ? ' bg-gray-200 text-gray-800' : ' bg-card-body text-theme border border-theme hover:shadow-lg'),
+      remote: remote, rel: page.rel
+    } %>
+</span>

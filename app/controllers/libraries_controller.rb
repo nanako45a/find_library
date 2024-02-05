@@ -6,8 +6,8 @@ class LibrariesController < ApplicationController
     # 投稿済みの図書館名、都道府県名を格納
     @unique_library_names = Library.unique_library_names
     @unique_prefectures = Library.unique_prefectures
-    # 検索条件に基づいてフィルタリングされた図書館のリストを格納
-    @libraries = Library.search(params[:name], params[:prefecture], params[:study_rooms], params[:holiday])
+    # 検索条件に基づいてフィルタリングされた図書館のリストをページネート
+    @libraries = Library.search(params[:name], params[:prefecture], params[:study_rooms], params[:holiday]).page(params[:page]).per(9)
   end
 
   def show

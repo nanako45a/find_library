@@ -46,7 +46,9 @@
         </div>
       </div>
     <% else %>
-      <div class="text-center mb-6">画像はありません。</div>
+      <div class="flex justify-center mb-6">
+        <%= image_tag 'default_library1.webp', class: "max-w-36 h-auto rounded mx-auto" %>
+      </div>
     <% end %>
 
     <div class="flex items-center justify-center mb-6">

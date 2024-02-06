@@ -61,12 +61,12 @@
 
     <div class="flex items-center justify-center mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded text-center">投稿日時</div>
-      <div class="ml-8 text-center w-48"><%= @library.created_at.strftime("%Y年%m月%d日 %H:%M") %></div>
+      <div class="ml-8 text-center w-48"><%= @library.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日 %H:%M") %></div>
     </div>
 
     <div class="flex items-center justify-center mb-6">
       <div class="w-32 bg-gray-100 p-2 rounded text-center">最終編集日時</div>
-      <div class="ml-8 text-center w-48"><%= @library.updated_at.strftime("%Y年%m月%d日 %H:%M") %></div>
+      <div class="ml-8 text-center w-48"><%= @library.updated_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日 %H:%M") %></div>
     </div>
 
     <!-- 投稿者名とアバターの表示 -->

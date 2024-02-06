@@ -1,7 +1,7 @@
 class Library < ApplicationRecord
   mount_uploader :img, ImageUploader
 
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   has_many :users, through: :bookmarks
 
   # 図書館名と都道府県名のフィールドが空でないことを確認

@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FindLibrary</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <!-- <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> -->
-    <%= javascript_importmap_tags %>
-    <style>
-      body, html {
-        height: 100%;
-      }
-      body {
-        display: flex;
-        flex-direction: column;
-      }
-      main {
-        flex: 1 0 auto;
-      }
-      footer {
-        flex-shrink: 0;
-      }
-    </style>
-  </head>
+<head>
+  <title>FindLibrary</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <!-- <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> -->
+  <%= javascript_importmap_tags %>
+  <style>
+    body, html {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #f5f5dc; /* 淡いクリーム色を背景に設定 */
+    }
+    main {
+      flex: 1 0 auto;
+      background-color: #ffffff; /* main領域を白色に設定 */
+      width: 100%; /* 必要に応じて追加 */
+    }
+    footer {
+      flex-shrink: 0;
+    }
+  </style>
+</head>
 
-  <body>
-    <%= render 'layouts/header' %>
+<body>
+  <%= render 'layouts/header' %>
 
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
+  <% flash.each do |key, value| %>
+    <div class="flash <%= key %>"><%= value %></div>
+  <% end %>
 
-    <main class="container mx-auto mt-5 px-5 flex"> 
-      <%= yield %>
-    </main>
-  
-    <%= render 'layouts/footer' %>
-  </body>
+  <main class="container mx-auto mt-5 px-5 flex"> 
+    <%= yield %>
+  </main>
+
+  <%= render 'layouts/footer' %>
+</body>
 </html>

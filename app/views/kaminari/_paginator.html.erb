@@ -14,8 +14,8 @@
     <% each_page do |page| -%>
       <% if page.display_tag? -%>
         <%= page_tag page %>
-      <% elsif page.was_truncated? -%> <!-- この行を修正 -->
-        <%= gap_tag %> <!-- ギャップを表示 -->
+      <% elsif page.was_truncated? -%>
+        <%= gap_tag %>
       <% end -%>
     <% end -%>
     <% unless current_page.out_of_range? %>

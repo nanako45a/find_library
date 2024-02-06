@@ -76,7 +76,7 @@
         <% if @library.user.avatar? %>
           <%= image_tag @library.user.avatar.url, class: "h-8 w-8 rounded-full mr-2" %>
         <% else %>
-          <%= image_tag 'default_avatar.png', class: "h-8 w-8 rounded-full mr-2" %>
+          <%= image_tag 'default_avatar.webp', class: "h-8 w-8 rounded-full mr-2" %>
         <% end %>
         <span class="text-center"><%= @library.user.name %></span>
       </div>

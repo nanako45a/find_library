@@ -1,6 +1,6 @@
 <!-- 新しい図書館を追加 -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
-  <h1 class="text-xl font-semibold mb-12 text-gray-600">新しい図書館を追加</h1>
+  <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-pen-fancy"></i> 新しい図書館を追加</h1>
 
   <%= form_with(model: @library, local: true, html: { multipart: true }) do |form| %>
     <% if @library.errors.any? %>

@@ -1,7 +1,7 @@
 <!-- 図書館編集画面 -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <%= form_with(model: @library, local: true, class: "mx-auto max-w-md") do |form| %>
-    <h1 class="text-xl font-semibold mb-12 text-gray-600"><%= @library.name %> の情報を編集</h1>
+    <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-pen-fancy"></i> <%= @library.name %> の情報を編集</h1>
 
     <!-- 保存ボタン -->
     <div class="text-center mt-8">

@@ -1,5 +1,5 @@
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
-  <h1 class="text-xl font-semibold mb-12 text-gray-600">図書館一覧</h1>
+  <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-house"></i> 図書館一覧</h1>
 
   <hr class="my-4 border-gray-300">
 
@@ -24,14 +24,17 @@
       <%= form.text_field :holiday, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
   
-    <%= form.submit '検索', class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-1 px-8 rounded focus:outline-none focus:shadow-outline border border-black" %>
+    <%= form.button type: 'submit', class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-1 px-8 rounded focus:outline-none focus:shadow-outline border border-black" do %>
+      <i class="fa-solid fa-magnifying-glass"></i> 検索
+    <% end %>
   <% end %>
 
   <hr class="my-4 border-gray-300">
 
   <div class="text-center mt-9">
-    <%= link_to '図書館を登録する', new_library_path, class: "bg-blue-100 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
-    <%= link_to 'マイページ', profile_path, class: "bg-blue-100 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
+    <%= link_to new_library_path, class: "bg-blue-100 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" do %>
+      <i class="fa-solid fa-pen-fancy"></i> 図書館を登録する
+    <% end %>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">

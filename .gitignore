@@ -43,3 +43,4 @@ config/environments/*.local.yml
 
 # .envファイルをgithub上にアップさせないように設定
 .env
+/.env

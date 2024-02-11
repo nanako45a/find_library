@@ -11,6 +11,10 @@ class Library < ApplicationRecord
   # Userモデルとの関連付けを追加
   belongs_to :user
 
+  # 住所から緯度経度を計算
+  geocoded_by :address
+  after_validation :geocode
+
   def self.search(name, prefecture, study_rooms, holiday)
     libraries = all
     libraries = libraries.where("name ILIKE ?", "%#{name}%") if name.present?

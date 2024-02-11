@@ -48,7 +48,7 @@
 
         <div class="flex items-center justify-start mb-6">
           <div class="w-32 bg-gray-100 p-2 rounded">自習室</div>
-          <div class="ml-8"><%= library.study_rooms > 0 ? 'あり' : 'なし' %></div>
+          <div class="ml-8"><%= library.study_rooms.to_i > 0 ? 'あり' : 'なし' %></div>
         </div>
 
         <!-- 画像表示 -->

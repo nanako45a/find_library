@@ -1,5 +1,10 @@
 <!-- ユーザー登録 -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
+  <div class="flex justify-start" style="padding-left: 10%;">
+    <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
+      <i class="fa-solid fa-reply"></i> 戻る
+    <% end %>
+  </div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-user-pen"></i> ユーザー登録</h1>
 
   <%= form_with model: @user, url: users_path, local: true, multipart: true, class: "space-y-6 max-w-md mx-auto" do |form| %>
@@ -47,9 +52,5 @@
     </div>
   <% end %>
 
-  <div class="text-center mt-6">
-    <%= link_to 'トップページ', root_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-    <%= link_to '図書館を探す', libraries_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-  </div>
   <div style="margin-bottom: 100px;"></div>
 </div>

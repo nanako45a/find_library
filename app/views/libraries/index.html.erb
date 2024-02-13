@@ -1,4 +1,10 @@
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
+  <!-- 「前のページに戻る」ボタン -->
+  <div class="flex justify-start" style="padding-left: 10%;">
+    <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
+      <i class="fa-solid fa-reply"></i> 戻る
+    <% end %>
+  </div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-house"></i> 図書館一覧</h1>
 
   <hr class="my-4 border-gray-300">

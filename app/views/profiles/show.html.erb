@@ -1,4 +1,9 @@
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
+  <div class="flex justify-start" style="padding-left: 10%;">
+    <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
+      <i class="fa-solid fa-reply"></i> 戻る
+    <% end %>
+  </div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-user"></i> マイページ</h1>
 
   <div class="border rounded-lg p-6 hover:bg-gray-100 mx-auto max-w-md">
@@ -63,10 +68,5 @@
       <% end %>
     <% end %>
 
-  <!-- 図書館一覧、図書館登録画面へのボタン -->
-  <div class="text-center mt-6">
-    <%= link_to '図書館を探す', libraries_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-    <%= link_to '図書館を登録する', new_library_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
-  </div>
   <div style="margin-bottom: 100px;"></div>
 </div>

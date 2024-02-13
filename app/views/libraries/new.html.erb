@@ -19,7 +19,7 @@
       <div class="flex items-center justify-center mb-6">
         <div class="w-32 bg-gray-100 p-2 rounded">図書館名</div>
         <div class="ml-8 w-48">
-          <%= form.text_field :name, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          <%= form.text_field :name, id: "library-name", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
 
@@ -63,16 +63,108 @@
         </div>
       </div>
 
+      <!-- 地図検索ボタン -->
+      <div class="text-center mt-8">
+        <button onclick="codeAddress()" type="button" class="bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">地図を表示</button>
+      </div>
+
+      <!-- 住所入力フィールド(実装後隠しフィールドへ変更) -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">住所</div>
+        <div class="ml-8 w-48">
+         <%= form.text_field :address, id: "library-address", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+       </div>
+      </div>
+
+      <!-- 緯度入力フィールド（実装後隠しフィールドに変更） -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">緯度</div>
+        <div class="ml-8 w-48">
+          <%= form.text_field :latitude, id: "library-latitude", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+      </div>
+
+      <!-- 経度の入力フィールド(実装後隠しフィールドに変更) -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">経度</div>
+        <div class="ml-8 w-48">
+          <%= form.text_field :longitude, id: "library-longitude", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+      </div>
+
+      <!-- 緯度経度の表示 -->
+      <div id="display" class="text-center mt-4"></div>
+
+      <!-- 地図の表示部分 -->
+      <div class="map-container text-center mt-12 mx-auto">
+        <div id='map'></div>
+      </div>
+
+      <style>
+      #map {
+        height: 600px;
+        width: 600px;
+        margin: auto;
+      }
+
+      .map-container {
+        max-width: 600px;
+        margin: 20px auto;
+      }
+      </style>
+
+      <script>
+      let map, marker, geocoder;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 35.6895, lng: 139.6917},
+          zoom: 12,
+        });
+        geocoder = new google.maps.Geocoder();
+      }
+
+      function codeAddress() {
+        const inputAddress = document.getElementById('library-name').value;
+        if (marker) {
+          marker.setMap(null); // Remove the previous marker, if any
+        }
+
+        geocoder.geocode({ 'address': inputAddress}, function(results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+                display.textContent = results[0].formatted_address + " - " + results[0].geometry.location.toString();
+                document.getElementById('library-latitude').value = results[0].geometry.location.lat();
+                document.getElementById('library-longitude').value = results[0].geometry.location.lng();
+                document.getElementById('library-address').value = results[0].formatted_address;
+            } else {
+                alert('該当する結果がありませんでした：' + status);
+                display.textContent = "該当する結果がありませんでした。";
+            }
+        });
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
+
+      <hr class="my-4 border-gray-300">
+
       <!-- 保存ボタン -->
       <div class="text-center mt-8">
-        <%= form.submit "保存", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <%= form.submit "図書館を登録する", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
       </div>
     </div>
   <% end %>
+
+  <hr class="my-4 border-gray-300">
 
   <div class="text-center mt-6">
     <%= link_to '図書館を探す', libraries_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     <%= link_to 'マイページ', profile_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
   </div>
+
   <div style="margin-bottom: 100px;"></div>
-</div>
+  </div>

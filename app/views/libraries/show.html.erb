@@ -91,27 +91,6 @@
     </div>
   </div>
 
-  <!-- 地図を表示 -->
-    <div id="map" style="height: 600px;"></div>
-    <script>
-      function initMap() {
-        const mapElement = document.getElementById('map');
-        const mapOptions = {
-          center: { lat: <%= @library.latitude %>, lng: <%= @library.longitude %> },
-          zoom: 15
-        };
-        const map = new google.maps.Map(mapElement, mapOptions);
-        new google.maps.Marker({
-          position: {lat: <%= @library.latitude %>, lng: <%= @library.longitude %>}, 
-          map: map,
-          title: '<%= j @library.name %>'
-        });
-      }
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
-    </script>
-
   <div class="text-center mt-6">
     <%= link_to '他の図書館を探す', libraries_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     <%= link_to 'マイページ', profile_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>

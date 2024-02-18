@@ -28,7 +28,7 @@ class ProfilesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar)
+    params.require(:user).permit(:name, :email, :avatar, :user_prefecture, :user_city)
   end  
 
   # ログイン中のユーザー情報を@userに格納

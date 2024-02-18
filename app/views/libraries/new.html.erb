@@ -1,11 +1,5 @@
 <!-- 新しい図書館を追加 -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
-  <!-- 「前のページに戻る」ボタン -->
-  <div class="flex justify-start" style="padding-left: 10%;">
-    <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
-      <i class="fa-solid fa-reply"></i> 戻る
-    <% end %>
-  </div>
   <div style="margin-bottom: 60px;"></div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-pen-fancy"></i> 新しい図書館を追加</h1>
 
@@ -157,14 +151,20 @@
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
 
-      <hr class="my-4 border-gray-300">
+      <hr class="my-8 border-gray-300 max-w-md mx-auto">
 
       <!-- 保存ボタン -->
       <div class="text-center mt-8">
-        <%= form.submit "図書館を登録する", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <%= form.submit "この図書館を登録", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
       </div>
     </div>
   <% end %>
 
+  <hr class="my-8 border-gray-300 max-w-md mx-auto">
+
+  <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-1.5 px-3 rounded-full focus:outline-none focus:shadow-outline border-2 border-gray-300" do %>
+    <i class="fa-solid fa-reply"></i> 前のページに戻る
+  <% end %>
+
   <div style="margin-bottom: 100px;"></div>
-  </div>
+</div>

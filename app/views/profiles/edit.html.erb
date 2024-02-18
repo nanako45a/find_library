@@ -1,16 +1,13 @@
-<div class="container mx-auto max-w-7xl px-4 text-center mt-20">
-  <div class="flex justify-start" style="padding-left: 10%;">
-    <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
-      <i class="fa-solid fa-reply"></i> 戻る
-    <% end %>
+<div class="container mx-auto max-w-6xl px-4 text-center mt-16">
+  <div class="flex justify-start" style="padding-left: 8%;">
   </div>
-  <div style="margin-bottom: 60px;"></div>
-  <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-user-pen"></i> プロフィールを編集</h1>
+  <div style="margin-bottom: 40px;"></div>
+  <h1 class="text-lg font-medium mb-10 text-gray-600"><i class="fa-solid fa-user-pen"></i> プロフィールを編集</h1>
 
   <%= form_with model: @user, url: profile_path, local: true, multipart: true do |form| %>
     <!-- エラーメッセージの表示（必要な場合） -->
     <% if @user.errors.any? %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+      <div class="bg-red-100 border border-red-400 text-red-700 px-3 py-2.5 rounded mb-3">
         <strong>エラーが発生しました：</strong>
         <ul>
           <% @user.errors.full_messages.each do |message| %>
@@ -20,43 +17,66 @@
       </div>
     <% end %>
 
-    <div class="border rounded-lg p-6 hover:bg-gray-100 mx-auto max-w-md">
+    <div class="border rounded-lg p-5 hover:bg-gray-100 mx-auto max-w-sm">
       <!-- 現在のアバター画像の表示 -->
       <% if @user.avatar? %>
-        <div class="flex justify-center mb-6">
-          <%= image_tag @user.avatar.url, class: "rounded-full h-24 w-24" %>
+        <div class="flex justify-center mb-5">
+          <%= image_tag @user.avatar.url, class: "rounded-full h-20 w-20" %>
         </div>
       <% end %>
 
       <!-- アバター画像編集フォーム(Usersテーブルのavatarカラムに保存) -->
-      <div class="flex items-center justify-start mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded">アバター</div>
-        <div class="ml-8">
-          <%= form.file_field :avatar, class: "shadow appearance-none border rounded py-2 px-4 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <div class="flex items-center justify-start mb-5">
+        <div class="w-28 bg-gray-100 p-1.5 rounded-full text-sm">アバター</div>
+        <div class="ml-6">
+          <%= form.file_field :avatar, class: "shadow appearance-none border rounded py-1.5 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
 
       <!-- 名前の編集フォーム(Usersテーブルのnameカラムに保存) -->
-      <div class="flex items-center justify-start mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded">名前</div>
-        <div class="ml-8">
-          <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <div class="flex items-center justify-start mb-5">
+        <div class="w-28 bg-gray-100 p-1.5 rounded-full text-sm">名前</div>
+        <div class="ml-6">
+          <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-1.5 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
 
       <!-- メールアドレス編集フォーム(Usersテーブルのemailカラムに保存) -->
-      <div class="flex items-center justify-start mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded">メールアドレス</div>
-        <div class="ml-8">
-          <%= form.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <div class="flex items-center justify-start mb-5">
+        <div class="w-28 bg-gray-100 p-1.5 rounded-full text-sm">メールアドレス</div>
+        <div class="ml-6">
+          <%= form.email_field :email, class: "shadow appearance-none border rounded w-full py-1.5 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
 
-      <!-- 更新ボタン -->
-      <div class="text-center mt-2">
-        <%= form.submit "更新", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <!-- 都道府県の編集フォーム(Usersテーブルのuser_prefectureカラムに保存) -->
+      <div class="flex items-center justify-start mb-5">
+        <div class="w-28 bg-gray-100 p-1.5 rounded-full text-sm">都道府県</div>
+        <div class="ml-6">
+          <%= form.select :user_prefecture, prefectures_for_select, { include_blank: true }, { class: "shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+      </div>
+
+      <!-- 市町村の編集フォーム(Usersテーブルのuser_cityカラムに保存) -->
+      <div class="flex items-center justify-start mb-5">
+        <div class="w-28 bg-gray-100 p-1.5 rounded-full text-sm">市町村</div>
+        <div class="ml-6">
+          <%= form.text_field :user_city, class: "shadow appearance-none border rounded w-full py-1.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+      </div>
+
+      <div class="text-center mt-1.5">
+        <%= form.submit "更新", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-1.5 px-3 rounded focus:outline-none focus:shadow-outline border-2 border-gray-300" %>
       </div>
     </div>
 
   <% end %>
+
+  <hr class="my-8 border-gray-300 max-w-md mx-auto">
+
+  <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-1.5 px-3 rounded-full focus:outline-none focus:shadow-outline border-2 border-gray-300" do %>
+    <i class="fa-solid fa-reply"></i> 前のページに戻る
+  <% end %>
+
+  <div style="margin-bottom: 100px;"></div>
 </div>

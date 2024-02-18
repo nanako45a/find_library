@@ -1,12 +1,11 @@
 <!-- ユーザー登録 -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
-  <div class="flex justify-start" style="padding-left: 10%;">
-    <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
-      <i class="fa-solid fa-reply"></i> 戻る
-    <% end %>
-  </div>
   <div style="margin-bottom: 60px;"></div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-user-pen"></i> ユーザー登録</h1>
+
+  <div class="text-center mt-4 text-sm text-gray-600">
+    <span class="text-red-500">*</span> がついている項目は必須です。
+  </div>
 
   <%= form_with model: @user, url: users_path, local: true, multipart: true, class: "space-y-6 max-w-md mx-auto" do |form| %>
     <% if @user.errors.any? %>
@@ -23,23 +22,33 @@
 
     <div class="border rounded-lg p-6 hover:bg-gray-100 mb-4">
       <div class="mb-6">
-        <%= form.label :name, '名前', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.label :name, '名前 <span class="text-red-500">*</span>'.html_safe, class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div class="mb-6">
-        <%= form.label :email, 'メールアドレス', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.label :email, 'メールアドレス <span class="text-red-500">*</span>'.html_safe, class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= form.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div class="mb-6">
-        <%= form.label :password, 'パスワード', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.label :password, 'パスワード <span class="text-red-500">*</span>'.html_safe, class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div class="mb-6">
-        <%= form.label :password_confirmation, 'パスワード確認', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.label :password_confirmation, 'パスワード確認 <span class="text-red-500">*</span>'.html_safe, class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= form.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="mb-6">
+        <%= form.label :user_prefecture, 'お住まいの都道府県 <span class="text-red-500">*</span>'.html_safe, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.select :user_prefecture, prefectures_for_select, { include_blank: true }, { class: "shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+
+      <div class="mb-6">
+        <%= form.label :user_city, 'お住まいの市町村', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :user_city, class: "shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div class="mb-6">
@@ -51,6 +60,12 @@
         <%= form.submit "登録", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
       </div>
     </div>
+  <% end %>
+
+  <hr class="my-8 border-gray-300 max-w-md mx-auto">
+
+  <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-1.5 px-3 rounded-full focus:outline-none focus:shadow-outline border-2 border-gray-300" do %>
+    <i class="fa-solid fa-reply"></i> 前のページに戻る
   <% end %>
 
   <div style="margin-bottom: 100px;"></div>

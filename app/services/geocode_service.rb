@@ -2,3 +2,7 @@
 # 以下の関連ファイルともにコードは一旦削除中
 # app/controllers/profiles_controller.rb
 # app/views/profiles/show.html.erb
+
+class GeocodeService
+  # 空で定義
+end

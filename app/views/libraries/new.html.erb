@@ -40,6 +40,38 @@
         </div>
       </div>
 
+      <!-- 座席数の選択フィールド -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">座席数</div>
+        <div class="ml-8 w-48">
+          <%= form.select :seats_number, Library.seats_numbers.keys.map { |key| [I18n.t("enums.library.seats_number.#{key}"), key] }, {}, { class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+      </div>
+
+      <!-- PC利用可能かの選択フィールド -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">PC利用可能</div>
+        <div class="ml-8 w-48">
+          <%= form.select :pc_available, Library.pc_availables.keys.map { |key| [I18n.t("enums.library.pc_available.#{key}"), key] }, {}, { class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+      </div>
+
+      <!-- WiFi利用可能かの選択フィールド -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">WiFi利用可能</div>
+        <div class="ml-8 w-48">
+          <%= form.select :wifi_available, Library.wifi_availables.keys.map { |key| [I18n.t("enums.library.wifi_available.#{key}"), key] }, {}, { class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+      </div>
+
+      <!-- 電源の有無の選択フィールド -->
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-32 bg-gray-100 p-2 rounded">電源利用可能</div>
+        <div class="ml-8 w-48">
+          <%= form.select :power_available, Library.power_availables.keys.map { |key| [I18n.t("enums.library.power_available.#{key}"), key] }, {}, { class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+        </div>
+      </div>
+
       <!-- 休館日の入力フィールド -->
       <div class="flex items-center justify-center mb-6">
         <div class="w-32 bg-gray-100 p-2 rounded">休館日</div>

@@ -27,5 +27,8 @@ module FindLibrary
     # 日本時間で表示
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+
+    # デフォルトロケールを日本語(:ja)に設定
+    config.i18n.default_locale = :ja
   end
 end

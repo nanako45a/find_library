@@ -66,6 +66,6 @@ class LibrariesController < ApplicationController
 
 # StrongParameters機能（コントローラーはフォームから送信されたパラメータを安全にハンドルしマスアサインメントの脆弱性を防ぐ）
   def library_params
-    params.require(:library).permit(:name, :prefecture, :study_rooms, :body, :address, :access, :img, :holiday, :latitude, :longitude)
+    params.require(:library).permit(:name, :prefecture, :study_rooms, :body, :address, :access, :img, :holiday, :latitude, :longitude, :seats_number, :pc_available, :wifi_available, :power_available)
   end
 end

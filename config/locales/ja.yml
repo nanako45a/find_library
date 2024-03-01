@@ -2,7 +2,7 @@ ja:
   # enumsセクション: モデルで定義されたenumの日本語表示設定
   enums:
     library:
-      # seats_number: 図書館の座席数に関する設定
+      # seats_number: 図書館の座席数
       seats_number:
         seats_none: "0席"
         seats_small: "1〜20席"
@@ -11,19 +11,19 @@ ja:
         seats_extra_large: "101席〜以上"
         seats_unknown: "わからない"
 
-      # pc_available: PC利用可能かに関する設定
+      # pc_available: PC利用可能か
       pc_available:
         pc_unavailable: "PC利用不可"
         pc_available: "PC利用可能"
         pc_unknown: "わからない"
 
-      # wifi_available: WiFi利用可能かに関する設定
+      # wifi_available: WiFi利用可能か
       wifi_available:
         wifi_unavailable: "WiFi利用不可"
         wifi_available: "WiFi利用可能"
         wifi_unknown: "わからない"
 
-      # power_available: 電源利用可能かに関する設定
+      # power_available: 電源利用可能か
       power_available:
         power_unavailable: "電源利用不可"
         power_available: "電源利用可能"

@@ -67,6 +67,26 @@
       <% end %>
     <% end %>
 
+    <!-- ユーザーの緯度経度の表示 -->
+    <h2 class="text-lg font-bold text-gray-600 mb-6">あなたの位置情報</h2>
+    <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+      <p class="text-gray-800">緯度: <%= @geocode_result[:user_latitude] %></p>
+      <p class="text-gray-800">経度: <%= @geocode_result[:user_longitude] %></p>
+    </div>
+
+    <!-- 半径5km以内にある図書館の表示 -->
+    <h2 class="text-lg font-bold text-gray-600 mb-6">近くの図書館</h2>
+    <% if @nearby_libraries.empty? %>
+      <div class="text-center">近くに図書館は見つかりませんでした。</div>
+    <% else %>
+      <% @nearby_libraries.each do |library| %>
+        <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+          <h3 class="font-bold text-gray-800"><%= library[:name] %></h3>
+          <p class="text-gray-600"><%= library[:location] %></p>
+        </div>
+      <% end %>
+    <% end %>
+
     <hr class="my-8 border-gray-300 max-w-md mx-auto">
 
     <%= link_to 'javascript:history.back()', class: "bg-gray-100 hover:bg-gray-200 text-black font-bold py-1.5 px-3 rounded-full focus:outline-none focus:shadow-outline border-2 border-gray-300" do %>

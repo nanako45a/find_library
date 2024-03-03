@@ -3,8 +3,12 @@ class Library < ApplicationRecord
   mount_uploader :img, ImageUploader
 
   # モデル間の関連付け
+  # 図書館は多数のブックマークやコメントを所有でき、図書館が削除された場合ともに削除される
   has_many :bookmarks, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  # ブックマークモデルが中間モデルとして機能し、ユーザーと図書館モデル間の多対多の関係を実現
   has_many :users, through: :bookmarks
+  # 図書館は特定のuserにより作成
   belongs_to :user
 
   # バリデーション

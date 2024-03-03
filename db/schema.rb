@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_22_092348) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_02_115838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_092348) do
     t.datetime "updated_at", null: false
     t.index ["library_id"], name: "index_bookmarks_on_library_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "comments_body"
+    t.integer "comments_seats_number"
+    t.integer "comments_pc_available"
+    t.integer "comments_wifi_available"
+    t.integer "comments_power_available"
+    t.bigint "library_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["library_id"], name: "index_comments_on_library_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "libraries", force: :cascade do |t|
@@ -84,6 +98,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_092348) do
 
   add_foreign_key "bookmarks", "libraries"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "comments", "libraries"
+  add_foreign_key "comments", "users"
   add_foreign_key "libraries", "users"
   add_foreign_key "posts", "libraries"
   add_foreign_key "posts", "users"

@@ -135,40 +135,12 @@
 
   <!-- コメントフォーム -->
   <div class="container mx-auto max-w-md px-4 text-center my-8">
-    <%= form_with(model: [@library, @library.comments.build], local: true, html: {class: "border rounded-lg p-6 hover:bg-gray-100"}) do |form| %>
+    <%= form_with(model: [@library, @comment], local: true, html: {class: "border rounded-lg p-6 hover:bg-gray-100"}) do |form| %>
       <div class="mb-6">
         <%= form.label :comments_body, "コメントを追加する", class: "block text-gray-700 text-md font-bold mb-2" %>
-      </div>
-  
-      <!-- 座席数の選択フィールド -->
-      <div class="mb-6">
-        <%= form.label :comments_seats_number, "座席数", class: "block text-gray-500 text-sm font-bold mb-2" %>
-        <%= form.select :comments_seats_number, Comment.comments_seats_numbers.keys.map { |key| [I18n.t("enums.comment.comments_seats_number.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
-      </div>
-      
-      <!-- PC利用可能かの選択フィールド -->
-      <div class="mb-6">
-        <%= form.label :comments_pc_available, "PCの利用", class: "block text-gray-500 text-sm font-bold mb-2" %>
-        <%= form.select :comments_pc_available, Comment.comments_pc_availables.keys.map { |key| [I18n.t("enums.comment.comments_pc_available.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
-      </div>
-      
-      <!-- WiFi利用可能かの選択フィールド -->
-      <div class="mb-6">
-        <%= form.label :comments_wifi_available, "WiFiの利用", class: "block text-gray-500 text-sm font-bold mb-2" %>
-        <%= form.select :comments_wifi_available, Comment.comments_wifi_availables.keys.map { |key| [I18n.t("enums.comment.comments_wifi_available.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
-      </div>
-      
-      <!-- 電源の有無の選択フィールド -->
-      <div class="mb-6">
-        <%= form.label :comments_power_available, "電源の利用", class: "block text-gray-500 text-sm font-bold mb-2" %>
-        <%= form.select :comments_power_available, Comment.comments_power_availables.keys.map { |key| [I18n.t("enums.comment.comments_power_available.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
-      </div>
-
-      <div class="mb-6">
-        <%= form.label :comments_body, "備考", class: "block text-gray-500 text-sm font-bold mb-2" %>
         <%= form.text_area :comments_body, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "ご自由にご記入ください" %>
       </div>
-
+  
       <div class="flex items-center justify-center">
         <%= form.submit "投稿", class: "bg-gray-200 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded text-sm focus:outline-none focus:shadow-outline ml-2" %>
       </div>
@@ -177,15 +149,11 @@
     <!-- コメント一覧 -->
     <div class="border rounded-lg p-6 hover:bg-gray-100 mt-8">
       <h3 class="text-md font-semibold text-gray-700 mb-4">みんなのコメント</h3>
-      <% if @library.comments.exists? %>
-        <% @library.comments.each do |comment| %>
+      <% if @comments.exists? %>
+        <% @comments.each do |comment| %>
           <div class="mb-4 last:mb-0">
             <div class="bg-white shadow rounded-lg p-4">
               <div class="text-gray-700 text-sm mb-2">
-                <p>座席数: <%= I18n.t("enums.comment.comments_seats_number.#{comment.comments_seats_number}") %></p>
-                <p>PCの利用: <%= I18n.t("enums.comment.comments_pc_available.#{comment.comments_pc_available}") %></p>
-                <p>WiFiの利用: <%= I18n.t("enums.comment.comments_wifi_available.#{comment.comments_wifi_available}") %></p>
-                <p>電源の利用: <%= I18n.t("enums.comment.comments_power_available.#{comment.comments_power_available}") %></p>
                 <%= comment.comments_body %>
               </div>
               <!-- 投稿者名と投稿日時の表示 -->

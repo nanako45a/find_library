@@ -38,4 +38,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:comments_body, :comments_seats_number, :comments_pc_available, :comments_wifi_available, :comments_power_available)
   end
-end  
+end

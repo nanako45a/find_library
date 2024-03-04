@@ -55,26 +55,26 @@
 
     <!-- 座席数の表示 -->
     <div class="text-center mb-6">
-      <h4 class="text-md font-semibold text-gray-500">座席数: <%= I18n.t("enums.library.seats_number.#{@library.seats_number}") %></h4>
+      <h4 class="text-sm font-semibold text-gray-500">座席数: <%= I18n.t("enums.library.seats_number.#{@library.seats_number}") %></h4>
     </div>
 
     <!-- PC利用可能かの表示 -->
     <div class="text-center mb-6">
-      <h4 class="text-md font-semibold text-gray-500">PC利用: <%= I18n.t("enums.library.pc_available.#{@library.pc_available}") %></h4>
+      <h4 class="text-sm font-semibold text-gray-500">PC利用: <%= I18n.t("enums.library.pc_available.#{@library.pc_available}") %></h4>
     </div>
 
     <!-- WiFi利用可能かの表示 -->
     <div class="text-center mb-6">
-      <h4 class="text-md font-semibold text-gray-500">WiFi: <%= I18n.t("enums.library.wifi_available.#{@library.wifi_available}") %></h4>
+      <h4 class="text-sm font-semibold text-gray-500">WiFi: <%= I18n.t("enums.library.wifi_available.#{@library.wifi_available}") %></h4>
     </div>
 
     <!-- 電源の有無の表示 -->
     <div class="text-center mb-6">
-      <h4 class="text-md font-semibold text-gray-500">電源: <%= I18n.t("enums.library.power_available.#{@library.power_available}") %></h4>
+      <h4 class="text-sm font-semibold text-gray-500">電源: <%= I18n.t("enums.library.power_available.#{@library.power_available}") %></h4>
     </div>
 
     <div class="text-center mb-6">
-      <h4 class="text-xs font-semibold text-gray-500">備考: <%= @library.body %></h4>
+      <h4 class="text-sm font-semibold text-gray-500">備考: <%= @library.body %></h4>
     </div>
   </div>
 
@@ -137,14 +137,43 @@
   <div class="container mx-auto max-w-md px-4 text-center my-8">
     <%= form_with(model: [@library, @library.comments.build], local: true, html: {class: "border rounded-lg p-6 hover:bg-gray-100"}) do |form| %>
       <div class="mb-6">
-        <%= form.label :comments_body, "コメント", class: "block text-gray-700 text-md font-bold mb-2" %>
-        <%= form.text_area :comments_body, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "情報を追加する" %>
+        <%= form.label :comments_body, "コメントを追加する", class: "block text-gray-700 text-md font-bold mb-2" %>
       </div>
+  
+      <!-- 座席数の選択フィールド -->
+      <div class="mb-6">
+        <%= form.label :comments_seats_number, "座席数", class: "block text-gray-500 text-sm font-bold mb-2" %>
+        <%= form.select :comments_seats_number, Comment.comments_seats_numbers.keys.map { |key| [I18n.t("enums.comment.comments_seats_number.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+      
+      <!-- PC利用可能かの選択フィールド -->
+      <div class="mb-6">
+        <%= form.label :comments_pc_available, "PCの利用", class: "block text-gray-500 text-sm font-bold mb-2" %>
+        <%= form.select :comments_pc_available, Comment.comments_pc_availables.keys.map { |key| [I18n.t("enums.comment.comments_pc_available.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+      
+      <!-- WiFi利用可能かの選択フィールド -->
+      <div class="mb-6">
+        <%= form.label :comments_wifi_available, "WiFiの利用", class: "block text-gray-500 text-sm font-bold mb-2" %>
+        <%= form.select :comments_wifi_available, Comment.comments_wifi_availables.keys.map { |key| [I18n.t("enums.comment.comments_wifi_available.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+      
+      <!-- 電源の有無の選択フィールド -->
+      <div class="mb-6">
+        <%= form.label :comments_power_available, "電源の利用", class: "block text-gray-500 text-sm font-bold mb-2" %>
+        <%= form.select :comments_power_available, Comment.comments_power_availables.keys.map { |key| [I18n.t("enums.comment.comments_power_available.#{key}"), key] }, {include_blank: true}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+      </div>
+
+      <div class="mb-6">
+        <%= form.label :comments_body, "備考", class: "block text-gray-500 text-sm font-bold mb-2" %>
+        <%= form.text_area :comments_body, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "ご自由にご記入ください" %>
+      </div>
+
       <div class="flex items-center justify-center">
-        <%= form.submit "コメントを投稿", class: "bg-gray-200 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded text-sm focus:outline-none focus:shadow-outline ml-2" %>
+        <%= form.submit "投稿", class: "bg-gray-200 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded text-sm focus:outline-none focus:shadow-outline ml-2" %>
       </div>
     <% end %>
-  
+
     <!-- コメント一覧 -->
     <div class="border rounded-lg p-6 hover:bg-gray-100 mt-8">
       <h3 class="text-md font-semibold text-gray-700 mb-4">みんなのコメント</h3>
@@ -153,6 +182,10 @@
           <div class="mb-4 last:mb-0">
             <div class="bg-white shadow rounded-lg p-4">
               <div class="text-gray-700 text-sm mb-2">
+                <p>座席数: <%= I18n.t("enums.comment.comments_seats_number.#{comment.comments_seats_number}") %></p>
+                <p>PCの利用: <%= I18n.t("enums.comment.comments_pc_available.#{comment.comments_pc_available}") %></p>
+                <p>WiFiの利用: <%= I18n.t("enums.comment.comments_wifi_available.#{comment.comments_wifi_available}") %></p>
+                <p>電源の利用: <%= I18n.t("enums.comment.comments_power_available.#{comment.comments_power_available}") %></p>
                 <%= comment.comments_body %>
               </div>
               <!-- 投稿者名と投稿日時の表示 -->
@@ -160,6 +193,11 @@
                 投稿者: <%= comment.user ? comment.user.name : "不明" %>,
                 投稿日時: <%= comment.created_at ? comment.created_at.strftime("%Y年%m月%d日 %H:%M") : "不明" %>
               </div>
+              <% if comment.user == current_user %>
+                <%= link_to [comment.library, comment], data: { turbo_method: :delete }, class: "bg-gray-200 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded text-sm focus:outline-none focus:shadow-outline inline-flex items-center" do %>
+                  <i class="fas fa-trash-alt mr-2"></i>削除
+                <% end %>
+              <% end %>
             </div>
           </div>
         <% end %>

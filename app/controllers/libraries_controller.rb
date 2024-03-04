@@ -16,6 +16,9 @@ class LibrariesController < ApplicationController
     # 図書館が見つからない場合は図書館一覧ページにリダイレクトし、エラーメッセージ表示
     if @library.nil?
       redirect_to libraries_path, alert: '図書館が見つかりませんでした。'
+    else
+      @comments = @library.comments # 既存のコメントを取得
+      @comment = @library.comments.build # 新しいコメント用のオブジェクトをビルド
     end
   end
 

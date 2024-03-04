@@ -15,12 +15,13 @@ Rails.application.routes.draw do
   # プロフィール画面用のルート
   resource :profile, only: [:show, :edit, :update]
 
-  # librariesとブックマークのルーティング
+  # 図書館ごとにブックマークやコメントを作成・削除するためのルート
   resources :libraries do
     resources :bookmarks, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
-  # 投稿機能用のルート
+  # 投稿機能用のルート（削除予定）
   resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   # ルートパスの定義

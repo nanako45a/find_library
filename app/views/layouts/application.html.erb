@@ -21,7 +21,12 @@
     main {
       flex: 1 0 auto;
       background-color: #ffffff; /* main領域を白色に設定 */
-      width: 100%;
+      width: 90%; /* main領域の幅を画面の90%に設定 */
+      max-width: 1200px; /* main領域の最大幅を1200pxに設定 */
+      margin: 20px auto; /* 上下に20pxのマージンを設定し、左右は自動で中央寄せ */
+      padding: 20px; /* 内容周りに20pxのパディングを設定 */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* 影を追加して立体感を出す */
+      border-radius: 50px; /* 角を丸くする */
     }
     footer {
       flex-shrink: 0;

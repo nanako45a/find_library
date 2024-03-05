@@ -1,6 +1,7 @@
 class BookmarksController < ApplicationController
   # ログインしていることを確認
   before_action :require_login
+
   # お気に入り登録、解除実行前にset_libraryメソッドを実行するように指定
   before_action :set_library
 

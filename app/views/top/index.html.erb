@@ -1,6 +1,6 @@
 <div class="my-10 sm:my-20 md:my-40 lg:my-48 mx-auto max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl px-2 sm:px-4 md:px-6 lg:px-8 text-center">
   <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-gray-600 mb-8 sm:mb-12 md:mb-14 lg:mb-16">ようこそ FindLibrary へ</h1>
-  <p class="text-sm sm:text-md md:text-lg lg:text-lg text-gray-600 mb-8 sm:mb-12 md:mb-14 lg:mb-16">このアプリは自習室のある図書館を簡単に検索できるサービスです。</p>
+  <p class="text-sm sm:text-md md:text-lg lg:text-xl text-gray-600 mb-8 sm:mb-12 md:mb-14 lg:mb-16">このアプリは自習室のある図書館を簡単に検索できるサービスです。</p>
 
   <hr class="my-4 border-gray-300">
 
@@ -9,13 +9,12 @@
   <p class="text-sm sm:text-md md:text-lg lg:text-lg text-gray-600 mb-4">"静かな場所で勉強したいなぁ"</p>
   <p class="text-sm sm:text-md md:text-lg lg:text-lg text-gray-600 mb-4">"どこに自習室があるんだろう"</p>
 
-
   <figure class="mx-auto">
     <%= image_tag "top.webp", class: 'mt-2 w-80 mx-auto mb-8' %>
   </figure>
 
   <p class="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold text-gray-700 mb-6 text-center">FindLibraryがお手伝いします</p>
-  <p class="text-sm sm:text-md md:text-lg lg:text-lg text-gray-600 mb-8 sm:mb-12 md:mb-14 lg:mb-16">都道府県、自習室の有無、休館日別に図書館を検索できます</p>
+  <p class="text-sm sm:text-md md:text-lg lg:text-lg text-gray-600 mb-8 sm:mb-12 md:mb-14 lg:mb-16">都道府県、自習室の有無別に図書館を検索できます</p>
   <figure class="mx-auto">
     <%= image_tag "iphone.webp", class: 'mt-2 w-80 mx-auto mb-8' %>
   </figure>
@@ -23,8 +22,7 @@
   <hr class="my-4 border-gray-300">
 
   <p class="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-bold text-gray-700 mb-6 text-center">さっそくはじめてみる</p>
-  <p class="text-sm sm:text-md md:text-lg lg:text-lg text-gray-600 mb-8 sm:mb-12 md:mb-14 lg:mb-16">「図書館を探す」はユーザー登録なしでもご利用いただけます</p>
+  <p class="text-xs sm:text-sm md:text-md lg:text-lg text-gray-600 mb-8 sm:mb-12 md:mb-14 lg:mb-16">「図書館を探す」はユーザー登録なしでもご利用いただけます</p>
   <%= link_to '図書館を探す', libraries_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 sm:py-3 md:py-4 lg:py-4 px-4 sm:px-6 md:px-8 lg:px-8 rounded focus:outline-none focus:shadow-outline ml-2 sm:ml-3 md:ml-4 lg:ml-4" %>
   <%= link_to 'ユーザー登録', new_user_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 sm:py-3 md:py-4 lg:py-4 px-4 sm:px-6 md:px-8 lg:px-8 rounded focus:outline-none focus:shadow-outline ml-2 sm:ml-3 md:ml-4 lg:ml-4" %>
-  <%= link_to 'ログイン', login_path, class: "bg-blue-100 hover:bg-blue-400 text-black font-bold py-2 sm:py-3 md:py-4 lg:py-4 px-4 sm:px-6 md:px-8 lg:px-8 rounded focus:outline-none focus:shadow-outline ml-2 sm:ml-3 md:ml-4 lg:ml-4" %>
 </div>

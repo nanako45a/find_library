@@ -31,6 +31,16 @@
     footer {
       flex-shrink: 0;
     }
+
+    /* メディアクエリ */
+    /* 以下を適用させるにはビューに各クラス（grid-cols-1, .sm:grid-cols-2, .md:grid-cols-3, .lg:grid-cols-4）を記述 */
+    @media (max-width: 640px) {
+      .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 > div {
+        font-size: 0.75em; /* フォントサイズを小さくする */
+        padding: 8px; /* パディングを小さくする */
+        margin: 4px; /* マージンを小さくする */
+      }
+    }
   </style>
 </head>
 

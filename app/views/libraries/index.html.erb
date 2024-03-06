@@ -38,18 +38,19 @@
     <% end %>
   </div>
 
-  <!-- メディアクエリのクラスを指定し、デバイスサイズに応じてグリッドの列数やフォントサイズ、余白等を調整するよう指定 -->
+  <!-- デバイスサイズに応じてグリッドの列数を調整（スマホデバイスで1列、スモールデバイスで2列...） -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
     <% @libraries.each do |library| %>
       <div class="border rounded-lg p-6 hover:bg-gray-100">
         <!-- 自習室の有無表示 -->
         <div class="text-center mb-6">
           <div class="border border-gray-400 mx-auto inline-block rounded-full px-6 py-2">
+            <!-- デバイスサイズに応じてフォントサイズを調整（スマホデバイスでxsサイズ、スモールデバイス以上でmdサイズ） -->
             <h4 class="text-xs sm:text-md font-semibold text-gray-500">自習室 <%= library.study_rooms.to_i > 0 ? 'あり' : 'なし' %></h4>
           </div>
         </div>
 
-        <h2 class="text-xs sm:text-lg font-bold text-gray-600 mb-6"><%= library.prefecture %> <%= library.name %></h2>
+        <h2 class="text-sm sm:text-lg font-bold text-gray-600 mb-6"><%= library.prefecture %> <%= library.name %></h2>
 
         <hr class="my-4 border-gray-300 max-w-md mx-auto">
 
@@ -58,16 +59,16 @@
           <% if current_user %>
             <% bookmark = current_user.bookmarks.find_by(library_id: library.id) %>
             <% if bookmark %>
-              <%= link_to library_bookmark_path(library, bookmark), data: { turbo_method: :delete }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 rounded focus:outline-none focus:shadow-outline" do %>
+              <%= link_to library_bookmark_path(library, bookmark), data: { turbo_method: :delete }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" do %>
                 <i class="fa-solid fa-star text-yellow-500">お気に入り</i>
               <% end %>
             <% else %>
-              <%= link_to library_bookmarks_path(library), data: { turbo_method: :post }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 rounded focus:outline-none focus:shadow-outline" do %>
+              <%= link_to library_bookmarks_path(library), data: { turbo_method: :post }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" do %>
                 <i class="fa-regular fa-star hover:text-yellow-500">お気に入りに登録</i>
               <% end %>
             <% end %>
           <% else %>
-            <%= link_to login_path, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 rounded focus:outline-none focus:shadow-outline" do %>
+            <%= link_to login_path, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" do %>
               <i class="fa-regular fa-star"></i> ログインしてお気に入り登録
             <% end %>
           <% end %>
@@ -86,11 +87,13 @@
 
         <!-- 座席数表示 -->
         <div class="text-center mb-6">
-          <h4 class="text-xs sm:text-sm font-semibold text-gray-500">座席数: <%= I18n.t("enums.library.seats_number.#{library.seats_number}") %></h4>
+          <div class="seat-tag">
+            <h4 class="text-xs sm:text-sm font-semibold text-gray-500">座席数: <%= I18n.t("enums.library.seats_number.#{library.seats_number}") %></h4>
+          </div>
         </div>
 
         <div class="mt-6">
-          <%= link_to '詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-1 px-2 sm:py-2 sm:px-4 rounded focus:outline-none focus:shadow-outline" %>
+          <%= link_to '詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 sm:py-2.5 sm:px-4.5 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" %>
         </div>
       </div>
     <% end %>

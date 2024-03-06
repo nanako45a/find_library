@@ -32,15 +32,22 @@
       flex-shrink: 0;
     }
 
-    /* メディアクエリ */
-    /* 以下を適用させるにはビューに各クラス（grid-cols-1, .sm:grid-cols-2, .md:grid-cols-3, .lg:grid-cols-4）を記述 */
-    @media (max-width: 640px) {
-      .grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 > div {
-        font-size: 0.75em; /* フォントサイズを小さくする */
-        padding: 8px; /* パディングを小さくする */
-        margin: 4px; /* マージンを小さくする */
-      }
+    /* 自習室詳細情報のタグスタイル */
+    .seat-tag {
+      display: inline-block;
+      padding: 4px 8px;
+      margin: 0 auto 8px 8px; /* 下と右に8pxのマージンを付加 */
+      background-color: #f0f0f0; /* 軽いグレーの背景色 */
+      border: 1px solid #ddd; /* 枠線 */
+      border-radius: 10px; /* 角を丸める */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ソフトな影を追加 */
     }
+    .seat-tag h4 {
+      margin: 0; /* h4タグのデフォルトのマージンを削除 */
+      color: #555; /* 文字色 */
+      font-size: 12px; /* フォントサイズを小さく設定 */
+    }
+
   </style>
 </head>
 

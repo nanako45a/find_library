@@ -12,18 +12,18 @@ ja:
         seats_unknown: "わからない"
 
       pc_available:
-        pc_unavailable: "PC利用不可"
-        pc_available: "PC利用可能"
+        pc_unavailable: "不可"
+        pc_available: "可能"
         pc_unknown: "わからない"
 
       wifi_available:
-        wifi_unavailable: "WiFi利用不可"
-        wifi_available: "WiFi利用可能"
+        wifi_unavailable: "不可"
+        wifi_available: "可能"
         wifi_unknown: "わからない"
 
       power_available:
-        power_unavailable: "電源利用不可"
-        power_available: "電源利用可能"
+        power_unavailable: "不可"
+        power_available: "可能"
         power_unknown: "わからない"
 
     # commentモデルで定義したenum
@@ -37,16 +37,16 @@ ja:
         comments_seats_unknown: "わからない"
 
       comments_pc_available:
-        comments_pc_unavailable: "PC利用不可"
-        comments_pc_available: "PC利用可能"
+        comments_pc_unavailable: "不可"
+        comments_pc_available: "可能"
         comments_pc_unknown: "わからない"
 
       comments_wifi_available:
-        comments_wifi_unavailable: "WiFi利用不可"
-        comments_wifi_available: "WiFi利用可能"
+        comments_wifi_unavailable: "不可"
+        comments_wifi_available: "可能"
         comments_wifi_unknown: "わからない"
 
       comments_power_available:
-        comments_power_unavailable: "電源利用不可"
-        comments_power_available: "電源利用可能"
+        comments_power_unavailable: "不可"
+        comments_power_available: "可能"
         comments_power_unknown: "わからない"

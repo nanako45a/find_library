@@ -1,0 +1,4 @@
+<!-- お気に入り解除ボタン -->
+<%= link_to bookmark_path(current_user.bookmarks.find_by(library_id: library.id)), id: "unbookmark-button-for-library-#{library.id}", data: { turbo_method: :delete } do %>
+  <i class="fa-regular fa-star hover:text-yellow-500 text-lg sm:text-2xl"></i>
+<% end %>

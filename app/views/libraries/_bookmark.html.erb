@@ -1,0 +1,4 @@
+<!-- お気に入り登録ボタン -->
+<%= link_to bookmarks_path(library_id: library.id), id: "bookmark-button-for-library-#{library.id}", data: { turbo_method: :post } do %>
+  <i class="fa-solid fa-star text-yellow-500 test-lg sm:text-2xl"></i>
+<% end %>

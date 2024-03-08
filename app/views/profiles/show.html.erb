@@ -53,9 +53,7 @@
 
     <!-- ユーザーがお気に入り登録した図書館の表示 -->
     <h2 class="text-lg font-bold text-gray-600 mb-6"><i class="fa-solid fa-star"></i> <%= @user.name %> のお気に入りの図書館 </h2>
-    <% if @bookmarked_libraries.empty? %>
-      <div class="text-center">お気に入りに登録された図書館はありません。</div>
-    <% else %>
+    <% if @bookmarked_libraries.present? %>
       <% @bookmarked_libraries.each do |library| %>
         <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
           <h3 class="font-bold text-gray-800"><%= library.name %></h3>

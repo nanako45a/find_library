@@ -11,9 +11,9 @@ class User < ApplicationRecord
   # 削除予定
   has_many :posts, dependent: :destroy
   # ユーザーは複数のブックマークを所有でき、ユーザーと図書館モデル間の多対多の関係を中間モデルを通じて実現
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   # ユーザーとブックマークした図書館と関連付け（ブックマーク一覧表示のため）
-  has_many :bookmarked_libraries, through: :bookmarks, source: :library
+  has_many :bookmark_libraries, through: :bookmarks, source: :library
 
   # パスワードに関するバリデーション
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
@@ -24,8 +24,23 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true, length: { maximum: 255 }
 
-  # ユーザーがブックマークした図書館の一覧を取得するメソッド
+  # ユーザーがブックマークした図書館のリストを返す
   def bookmarked_libraries
     bookmarks.includes(:library).map(&:library)
+  end
+
+  # 特定のlibraryをユーザーのブックマークリストに追加
+  def bookmark(library)
+    bookmark_libraries << library
+  end
+
+  # 特定のlibraryをユーザーのブックマークリストから削除
+  def unbookmark(library)
+    bookmark_libraries.delete(library)
+  end
+
+  # 特定のlibraryがユーザーにブックマークされているか判断
+  def bookmark?(library)
+    bookmark_libraries.include?(library)
   end
 end

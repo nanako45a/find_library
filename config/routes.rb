@@ -17,9 +17,14 @@ Rails.application.routes.draw do
 
   # 図書館ごとにブックマークやコメントを作成・削除するためのルート
   resources :libraries do
-    resources :bookmarks, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
+    collection do
+      get :bookmarks
+    end
   end
+
+  # createアクション:bookmarks_path,destroyアクション:bookmark_path(:id)
+  resources :bookmarks, only: %i[create destroy]
 
   # 投稿機能用のルート（削除予定）
   resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]

@@ -1,0 +1,3 @@
+<!-- app/views/bookmarks/destroy.turbo_stream.erb -->
+<!-- bookmarkscontrollerのdestroyアクションに対応するturbo streamのview -->
+<%= turbo_stream.replace "bookmark_button", partial: "libraries/bookmark_button", locals: { library: @library } %>

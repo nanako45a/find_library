@@ -1,0 +1,13 @@
+<!-- app/views/libraries/_bookmark_button.html.erb -->
+<!-- 部分テンプレート -->
+<div id="bookmark_button">
+  <% if current_user.bookmarks.find_by(library_id: library.id) %>
+    <%= link_to library_bookmark_path(library, current_user.bookmarks.find_by(library_id: library.id)), method: :delete, data: { turbo_method: :delete }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
+      <i class="fa-solid fa-star text-yellow-500">お気に入り</i>
+    <% end %>
+  <% else %>
+    <%= link_to library_bookmarks_path(library), method: :post, data: { turbo_method: :post }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" do %>
+      <i class="fa-regular fa-star hover:text-yellow-500">お気に入りに登録</i>
+    <% end %>
+  <% end %>
+</div>

@@ -24,22 +24,17 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true, length: { maximum: 255 }
 
-  # ユーザーがブックマークした図書館のリストを返す
-  def bookmarked_libraries
-    bookmarks.includes(:library).map(&:library)
-  end
-
-  # 特定のlibraryをユーザーのブックマークリストに追加
+  # 引数libraryを、ブックマークリスト（bookmark_libraries）に追加
   def bookmark(library)
     bookmark_libraries << library
   end
 
-  # 特定のlibraryをユーザーのブックマークリストから削除
+  # 引数libraryを、ブックマークリスト（bookmark_libraries）から削除
   def unbookmark(library)
     bookmark_libraries.delete(library)
   end
 
-  # 特定のlibraryがユーザーにブックマークされているか判断
+  # 引数libraryがブックマークリスト（bookmark_libraries）に含まれているか確認
   def bookmark?(library)
     bookmark_libraries.include?(library)
   end

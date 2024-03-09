@@ -12,12 +12,19 @@
   <div class="text-center mb-6">
     <h3 class="text-sm font-semibold text-gray-500"><%= @library.address %></h3>
   </div>
+
   <!-- お気に入り登録、解除ボタン -->
   <div class="mb-2">
-    <% if current_user.bookmark?(@library) %>
-      <%= render 'libraries/unbookmark', { library: @library } %>
+    <% if current_user %>
+      <% if current_user.bookmark?(@library) %>
+        <%= render 'libraries/unbookmark', { library: @library } %>
+      <% else %>
+        <%= render 'libraries/bookmark', { library: @library } %>
+      <% end %>
     <% else %>
-      <%= render 'libraries/bookmark', { library: @library } %>
+      <%= link_to login_path do %>
+        <i class="fa-solid fa-star text-yellow-500 text-lg sm:text-2xl"></i>
+      <% end %>
     <% end %>
   </div>
 

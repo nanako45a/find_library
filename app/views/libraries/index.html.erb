@@ -38,8 +38,7 @@
     <% end %>
   </div>
 
-  <!-- デバイスサイズに応じてグリッドの列数を調整（スマホデバイスで1列、スモールデバイスで2列...） -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
     <% @libraries.each do |library| %>
       <div class="card border rounded-lg p-6 hover:bg-gray-100">
         <!-- 自習室の有無表示 -->

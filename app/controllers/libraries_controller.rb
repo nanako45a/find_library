@@ -7,7 +7,7 @@ class LibrariesController < ApplicationController
     @unique_library_names = Library.unique_library_names
     @unique_prefectures = Library.unique_prefectures
     # 検索条件に基づいてフィルタリングされた図書館のリストをページネート
-    @libraries = Library.search(params[:name], params[:prefecture], params[:study_rooms], params[:holiday]).page(params[:page]).per(3)
+    @libraries = Library.search(params[:name], params[:prefecture], params[:study_rooms], params[:holiday]).page(params[:page]).per(6)
   end
 
   def show

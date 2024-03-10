@@ -9,22 +9,22 @@ ja:
         seats_medium: "21〜50席"
         seats_large: "51〜100席"
         seats_extra_large: "101席〜以上"
-        seats_unknown: "わからない"
+        seats_unknown: "不明"
 
       pc_available:
         pc_unavailable: "不可"
         pc_available: "可能"
-        pc_unknown: "わからない"
+        pc_unknown: "不明"
 
       wifi_available:
         wifi_unavailable: "不可"
         wifi_available: "可能"
-        wifi_unknown: "わからない"
+        wifi_unknown: "不明"
 
       power_available:
         power_unavailable: "不可"
         power_available: "可能"
-        power_unknown: "わからない"
+        power_unknown: "不明"
 
     # commentモデルで定義したenum
     comment:
@@ -34,19 +34,19 @@ ja:
         comments_seats_medium: "21〜50席"
         comments_seats_large: "51〜100席"
         comments_seats_extra_large: "101席〜以上"
-        comments_seats_unknown: "わからない"
+        comments_seats_unknown: "不明"
 
       comments_pc_available:
         comments_pc_unavailable: "不可"
         comments_pc_available: "可能"
-        comments_pc_unknown: "わからない"
+        comments_pc_unknown: "不明"
 
       comments_wifi_available:
         comments_wifi_unavailable: "不可"
         comments_wifi_available: "可能"
-        comments_wifi_unknown: "わからない"
+        comments_wifi_unknown: "不明"
 
       comments_power_available:
         comments_power_unavailable: "不可"
         comments_power_available: "可能"
-        comments_power_unknown: "わからない"
+        comments_power_unknown: "不明"

@@ -4,31 +4,31 @@
 
   <hr class="my-4 border-gray-300">
 
-  <%= form_with url: libraries_path, method: :get, local: true, class: "flex flex-wrap justify-center gap-4 mb-8" do |form| %>
-    <div class="mb-4">
-      <%= form.label :name, '図書館名', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.select :name, options_for_select(@unique_library_names, selected: params[:name]), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-
-    <div class="mb-4">
-      <%= form.label :prefecture, '都道府県', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.select :prefecture, options_for_select(@unique_prefectures, selected: params[:prefecture]), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
+  <!-- 検索フォーム -->
+  <div id="search-form" class="card border rounded shadow p-4 mx-auto max-w-4xl mt-5 hover:bg-gray-100">
+    <%= form_with url: libraries_path, method: :get, local: true, class: "flex flex-col sm:flex-row justify-center gap-4 mb-8" do |form| %>
+      <div class="flex-1">
+        <%= form.label :name, '図書館名', class: "block text-gray-700 text-sm font-bold mb-2 sm:mb-0" %>
+        <%= text_field_tag :name, params[:name], list: 'library-names', class: "shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" %>
+      </div>
   
-    <div class="mb-4">
-      <%= form.label :study_rooms, '自習室の有無', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.select :study_rooms, options_for_select([['あり', 1], ['なし', 0]], selected: params[:study_rooms].present? ? params[:study_rooms].to_i : nil), include_blank: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-
-    <div class="mb-4">
-      <%= form.label :holiday, '休館日', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_field :holiday, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
+      <div class="flex-1">
+        <%= form.label :prefecture, '都道府県', class: "block text-gray-700 text-sm font-bold mb-2 sm:mb-0" %>
+        <%= form.select :prefecture, options_for_select(@unique_prefectures, selected: params[:prefecture]), include_blank: true, class: "shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" %>
+      </div>
   
-    <%= form.button type: 'submit', class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-1 px-8 rounded focus:outline-none focus:shadow-outline border border-black" do %>
-      <i class="fa-solid fa-magnifying-glass"></i> 検索
+      <div class="flex-1">
+        <%= form.label :study_rooms, '自習室の有無', class: "block text-gray-700 text-sm font-bold mb-2 sm:mb-0" %>
+        <%= form.select :study_rooms, options_for_select([['あり', 1], ['なし', 0]], selected: params[:study_rooms].present? ? params[:study_rooms].to_i : nil), include_blank: true, class: "shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" %>
+      </div>
+  
+      <div class="flex items-end justify-center flex-1">
+        <%= form.button type: 'submit', class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" do %>
+          <i class="fa-solid fa-magnifying-glass"></i> 検索
+        <% end %>
+      </div>
     <% end %>
-  <% end %>
+  </div>
 
   <hr class="my-4 border-gray-300">
 
@@ -41,7 +41,7 @@
   <!-- デバイスサイズに応じてグリッドの列数を調整（スマホデバイスで1列、スモールデバイスで2列...） -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
     <% @libraries.each do |library| %>
-      <div class="border rounded-lg p-6 hover:bg-gray-100">
+      <div class="card border rounded-lg p-6 hover:bg-gray-100">
         <!-- 自習室の有無表示 -->
         <div class="text-center mb-6">
           <div class="border border-gray-400 mx-auto inline-block rounded-full px-6 py-2">
@@ -53,26 +53,6 @@
         <h2 class="text-sm sm:text-lg font-bold text-gray-600 mb-6"><%= library.prefecture %> <%= library.name %></h2>
 
         <hr class="my-4 border-gray-300 max-w-md mx-auto">
-
-        <!-- お気に入り登録、解除ボタン -->
-        <div class="mb-8">
-          <% if current_user %>
-            <% bookmark = current_user.bookmarks.find_by(library_id: library.id) %>
-            <% if bookmark %>
-              <%= link_to library_bookmark_path(library, bookmark), data: { turbo_method: :delete }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" do %>
-                <i class="fa-solid fa-star text-yellow-500">お気に入り</i>
-              <% end %>
-            <% else %>
-              <%= link_to library_bookmarks_path(library), data: { turbo_method: :post }, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" do %>
-                <i class="fa-regular fa-star hover:text-yellow-500">お気に入りに登録</i>
-              <% end %>
-            <% end %>
-          <% else %>
-            <%= link_to login_path, class: "bg-transparent hover:bg-gray-200 text-black font-bold py-0.5 px-1 sm:py-2 sm:px-4 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" do %>
-              <i class="fa-regular fa-star"></i> ログインしてお気に入り登録
-            <% end %>
-          <% end %>
-        </div>
 
         <!-- 画像表示 -->
         <% if library.img.present? %>

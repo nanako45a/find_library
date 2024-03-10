@@ -2,7 +2,7 @@
   <div style="margin-bottom: 60px;"></div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-user"></i> マイページ</h1>
 
-  <div class="border rounded-lg p-6 hover:bg-gray-100 mx-auto max-w-md">
+  <div class="card border rounded-lg p-6 hover:bg-gray-100 mx-auto max-w-md">
     <!-- 居住地をアバターと名前の上に小さく表示 -->
     <div class="flex justify-center items-center mb-4">
       <div class="text-sm bg-gray-100 text-gray-600 py-1 px-3 rounded-full">
@@ -39,7 +39,7 @@
       <div class="text-center">投稿された図書館はありません。</div>
     <% else %>
       <% @libraries.each do |library| %>
-        <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+        <div class="card border rounded-lg p-6 mb-8 hover:bg-gray-100">
           <h3 class="font-bold text-gray-800"><%= library.name %></h3>
           <p class="text-gray-600"><%= library.body %></p>
           <div class="mt-4">
@@ -57,7 +57,7 @@
       <div class="text-center">お気に入りに登録された図書館はありません。</div>
     <% else %>
       <% @bookmarked_libraries.each do |library| %>
-        <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+        <div class="card border rounded-lg p-6 mb-8 hover:bg-gray-100">
           <h3 class="font-bold text-gray-800"><%= library.name %></h3>
           <p class="text-gray-600"><%= library.body %></p>
           <div class="mt-4">
@@ -67,20 +67,14 @@
       <% end %>
     <% end %>
 
-    <!-- ユーザーの緯度経度の表示 -->
-    <h2 class="text-lg font-bold text-gray-600 mb-6">あなたの位置情報</h2>
-    <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
-      <p class="text-gray-800">緯度: <%= @geocode_result[:user_latitude] %></p>
-      <p class="text-gray-800">経度: <%= @geocode_result[:user_longitude] %></p>
-    </div>
-
-    <!-- 半径5km以内にある図書館の表示 -->
+    <!-- 半径5km以内にある図書館の表示（日本語名のもののみを3つ表示） -->
     <h2 class="text-lg font-bold text-gray-600 mb-6">近くの図書館</h2>
-    <% if @nearby_libraries.empty? %>
-      <div class="text-center">近くに図書館は見つかりませんでした。</div>
+    <% japanese_libraries = @nearby_libraries.select { |library| library[:name] =~ /\p{Hiragana}|\p{Katakana}|\p{Han}/ } %>
+    <% if japanese_libraries.empty? %>
+      <div class="text-center">近くに日本語の図書館は見つかりませんでした。</div>
     <% else %>
-      <% @nearby_libraries.each do |library| %>
-        <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
+      <% japanese_libraries.take(3).each do |library| %>
+        <div class="card border rounded-lg p-6 mb-8 hover:bg-gray-100">
           <h3 class="font-bold text-gray-800"><%= library[:name] %></h3>
           <p class="text-gray-600"><%= library[:location] %></p>
         </div>

@@ -15,8 +15,8 @@
       </div>
     <% end %>
 
-    <div class="border rounded-lg p-6 hover:bg-gray-100 mx-auto">
-      <!-- 図書館名の入力フィールド -->
+    <div class="card border rounded-lg p-6 hover:bg-gray-100 mx-auto">
+      <!-- 図書館名の入力フィールド（地図検索のkey） -->
       <div class="flex items-center justify-center mb-6">
         <div class="w-32 bg-gray-100 p-2 rounded">図書館名</div>
         <div class="ml-8 w-48">
@@ -96,36 +96,22 @@
         </div>
       </div>
 
-      <!-- 地図検索ボタン -->
-      <div class="text-center mt-8">
-        <button onclick="codeAddress()" type="button" class="bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">地図を表示</button>
-      </div>
-
-      <!-- 住所入力フィールド(実装後隠しフィールドへ変更) -->
+      <!-- 住所、緯度軽度の隠しフィールド -->
       <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded">住所</div>
         <div class="ml-8 w-48">
-         <%= form.text_field :address, id: "library-address", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-       </div>
-      </div>
-
-      <!-- 緯度入力フィールド（実装後隠しフィールドに変更） -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded">緯度</div>
-        <div class="ml-8 w-48">
-          <%= form.text_field :latitude, id: "library-latitude", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          <%= form.text_field :address, id: "library-address", placeholder: "住所を検索", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         </div>
+        <button onclick="codeAddress()" type="button" class="ml-4 bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
       </div>
-
-      <!-- 経度の入力フィールド(実装後隠しフィールドに変更) -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded">経度</div>
-        <div class="ml-8 w-48">
-          <%= form.text_field :longitude, id: "library-longitude", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-        </div>
+      <div class="text-center text-sm text-gray-600">
+        ※住所は図書館名から検索します
       </div>
+      <%= form.hidden_field :latitude, id: "library-latitude" %>
+      <%= form.hidden_field :longitude, id: "library-longitude" %>
 
-      <!-- 緯度経度の表示 -->
+      <!-- 取得した緯度経度と住所を表示 -->
       <div id="display" class="text-center mt-4"></div>
 
       <!-- 地図の表示部分 -->
@@ -146,41 +132,53 @@
       }
       </style>
 
+      <!-- 住所検索と地図表示の処理 -->
       <script>
       let map, marker, geocoder;
 
+      // 1.Google Maps初期化initmap関数
       function initMap() {
+        // map変数にGoogle Mapsのインスタンスを作成
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 35.6895, lng: 139.6917},
           zoom: 12,
         });
-        geocoder = new google.maps.Geocoder();
+        geocoder = new google.maps.Geocoder(); // geocoder変数にGeocoderのインスタンスを作成
       }
 
+      // 2.「地図表示ボタン」で呼び出されるcodeadress関数
       function codeAddress() {
+        // 入力された図書館名を取得
         const inputAddress = document.getElementById('library-name').value;
         if (marker) {
-          marker.setMap(null); // Remove the previous marker, if any
+          marker.setMap(null); // 前マーカーを削除
         }
-
+      
+        // 3.Geocoding APIを使用して住所を緯度経度に変換
         geocoder.geocode({ 'address': inputAddress}, function(results, status) {
             if (status == 'OK') {
+                // 検索成功時、地図の中心を検索結果に更新
                 map.setCenter(results[0].geometry.location);
+                // 検索結果の位置にマーカーを設置
                 marker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
                 });
-                display.textContent = results[0].formatted_address + " - " + results[0].geometry.location.toString();
+                // 緯度、経度、フォーマットされた住所を隠しフィールドにセット
                 document.getElementById('library-latitude').value = results[0].geometry.location.lat();
                 document.getElementById('library-longitude').value = results[0].geometry.location.lng();
                 document.getElementById('library-address').value = results[0].formatted_address;
+                // 緯度経度と住所を画面に表示
+                display.textContent = "住所: " + results[0].formatted_address + ", 緯度: " + results[0].geometry.location.lat() + ", 経度: " + results[0].geometry.location.lng();
             } else {
+                // 検索が失敗した場合の処理
                 alert('該当する結果がありませんでした：' + status);
                 display.textContent = "該当する結果がありませんでした。";
             }
         });
       }
       </script>
+
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
 
       <hr class="my-8 border-gray-300 max-w-md mx-auto">

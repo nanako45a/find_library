@@ -1,4 +1,6 @@
 # サービス名：「FindLibrary」
+[![Image from Gyazo](https://i.gyazo.com/4cb7ee3f023a30db2fe8b72e3da50bca.png)](https://gyazo.com/4cb7ee3f023a30db2fe8b72e3da50bca)
+
 https://cryptic-headland-70938-ab332c316ec4.herokuapp.com/
 
 ## サービス概要
@@ -55,11 +57,11 @@ https://cryptic-headland-70938-ab332c316ec4.herokuapp.com/
 | カテゴリ | 技術 |
 | --- | --- |
 | フロントエンド | TailwindCSS, Javascript, Hotwire (Turbo/Stimulus) |
-| バックエンド | Ruby on Rails 7, Ruby 3 |
+| バックエンド | Ruby on Rails 7.1.2, Ruby 3.2.2 |
 | データベース | PostgreSQL |
 | インフラ | Heroku, Amazon S3 |
 | API | Google Maps API (Geocoding API, Maps JavaScript API, Places API) |
-| その他 | CarrierWave, mini magick, letter opener web |
+| その他 | CarrierWave, Mini magick, Letter opener web |
 
 ### ER図
 [![Image from Gyazo](https://i.gyazo.com/aed99f9f21e7025c64b5815c0c1aed67.png)](https://gyazo.com/aed99f9f21e7025c64b5815c0c1aed67)

@@ -62,7 +62,7 @@ https://cryptic-headland-70938-ab332c316ec4.herokuapp.com/
 | その他 | CarrierWave, mini magick, letter opener web |
 
 ### ER図
-https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b
+[![Image from Gyazo](https://i.gyazo.com/aed99f9f21e7025c64b5815c0c1aed67.png)](https://gyazo.com/aed99f9f21e7025c64b5815c0c1aed67)
 
 ### 画面遷移図
 https://www.figma.com/file/L5U91EVX2ycd0E1gv6tJvb/%E7%84%A1%E9%A1%8C?type=design&node-id=22%3A23&mode=design&t=qXcNytzqvCZmnfOh-1

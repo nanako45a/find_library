@@ -13,21 +13,21 @@ https://cryptic-headland-70938-ab332c316ec4.herokuapp.com/
 そんなとき、もっと手軽に全国の図書館の自習室の情報を検索できないか？と考え、なければ自分の手で作ってみようと思い立ち、このサービスを開発することを決めました。
 
 ## ユーザー層について
-決めたユーザー層：図書館の自習室を利用しているユーザー
-どうしてその層を対象にしたのか：図書館が定休日の日や、自習室が混んでいる場合など、別の図書館の情報を知っていれば状況に応じて場所を選択できるから。
+- 決めたユーザー層：図書館の自習室を利用しているユーザー
+- どうしてその層を対象にしたのか：図書館が定休日の日や、自習室が混んでいる場合など、別の図書館の情報を知っていれば状況に応じて場所を選択できるから。
 
 ## サービスの利用イメージ
-1.管理者・ユーザー側が自習室の情報を投稿
-2.ユーザーは投稿から自習室のある図書館を見つける
-3.追加したい情報があればユーザーがコメントを追加
+1. 管理者・ユーザー側が自習室の情報を投稿
+2. ユーザーは投稿から自習室のある図書館を見つける
+3. 追加したい情報があればユーザーがコメントを追加
 
 ## ユーザーの獲得について
 サービスをtwitter（X）で宣伝することでユーザーの獲得を図る。
 
 ## サービスの差別化ポイント・推しポイント
-検索機能が充実しているところ。
-都道府県別、自習室の有無別に検索できる。
-また、位置情報を記載し、足を運びやすい場所に位置しているかも伏せて確認することができる。
+- 検索機能が充実しているところ
+- 都道府県別、自習室の有無別に検索できる
+- 位置情報を記載し、足を運びやすい場所に位置しているかも伏せて確認することができる
 
 ## 実装機能
 ### MVPリリース
@@ -52,15 +52,17 @@ https://cryptic-headland-70938-ab332c316ec4.herokuapp.com/
 
 ## 技術構成
 ### 使用技術
-フロントエンド：TailwindCSS,Javascript,Hotwire（Turbo/Stimulus)
-バックエンド：Ruby on Rails7.,Ruby3.
-データベース：PostgreSQL
-インフラ：Heroku,AmazonS3
-API：GoogleMapsAPI(GeocodingAPI,MapsJavaScriptAPI,Places API)
-その他：CarrierWave/mini magick/letter opener web
+| カテゴリ | 技術 |
+| --- | --- |
+| フロントエンド | TailwindCSS, Javascript, Hotwire (Turbo/Stimulus) |
+| バックエンド | Ruby on Rails 7, Ruby 3 |
+| データベース | PostgreSQL |
+| インフラ | Heroku, Amazon S3 |
+| API | Google Maps API (Geocoding API, Maps JavaScript API, Places API) |
+| その他 | CarrierWave, mini magick, letter opener web |
 
 ### ER図
-https://gyazo.com/2cb89aabc2a5b6df845c5c59a9b6796b
+[![Image from Gyazo](https://i.gyazo.com/aed99f9f21e7025c64b5815c0c1aed67.png)](https://gyazo.com/aed99f9f21e7025c64b5815c0c1aed67)
 
 ### 画面遷移図
 https://www.figma.com/file/L5U91EVX2ycd0E1gv6tJvb/%E7%84%A1%E9%A1%8C?type=design&node-id=22%3A23&mode=design&t=qXcNytzqvCZmnfOh-1

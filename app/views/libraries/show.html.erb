@@ -119,7 +119,7 @@
 
   <!-- コメントフォーム -->
   <div class="container mx-auto max-w-md px-4 text-center my-8">
-    <%= form_with(model: [@library, @comment], local: true, html: {class: "card border rounded-lg p-6 hover:bg-gray-100"}) do |form| %>
+    <%= form_with(model: @comment, url: library_comments_path(@library), local: true, html: {class: "card border rounded-lg p-6 hover:bg-gray-100"}) do |form| %>
       <div class="mb-6">
         <%= form.label :comments_body, "コメントを追加する", class: "block text-gray-700 text-md font-bold mb-2" %>
         <%= form.text_area :comments_body, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "追加情報等あればご自由にご記入ください" %>

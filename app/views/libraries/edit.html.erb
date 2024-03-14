@@ -4,11 +4,6 @@
   <%= form_with(model: @library, local: true, class: "mx-auto max-w-md") do |form| %>
     <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-pen-fancy"></i> <%= @library.name %> の情報を編集</h1>
 
-    <!-- 保存ボタン -->
-    <div class="text-center mt-8">
-      <%= form.submit "この内容に変更する", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-    </div>
-
     <div class="mb-4"></div>
 
     <% if @library.errors.any? %>
@@ -24,88 +19,69 @@
     <% end %>
 
     <div class="border rounded-lg p-6 hover:bg-gray-100 mx-auto">
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">図書館名</div>
-        <div class="ml-8">
-          <%= form.text_field :name, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 図書館名 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">図書館名</div>
+        <%= form.text_field :name, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">都道府県</div>
-        <div class="ml-8">
-          <%= form.select :prefecture, prefectures_for_select, {}, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 都道府県 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">都道府県</div>
+        <%= form.select :prefecture, prefectures_for_select, {}, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">自習室の有無</div>
-        <div class="ml-8">
-          <%= form.select :study_rooms, { 'あり': 1, 'なし': 0 }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 自習室の有無 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">自習室の有無</div>
+        <%= form.select :study_rooms, { 'あり': 1, 'なし': 0 }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">休館日</div>
-        <div class="ml-8">
-          <%= form.text_field :holiday, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 休館日 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">休館日</div>
+        <%= form.text_field :holiday, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <!-- 画像アップロードのフィールド -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">画像</div>
-        <div class="ml-8">
-            <%= form.file_field :img, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 画像アップロード -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">画像</div>
+        <%= form.file_field :img, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <!-- 自習室の有無の選択フィールド -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">自習室の有無</div>
-        <div class="ml-8">
-          <%= form.select :study_rooms, { 'あり': 1, 'なし': 0 }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 座席数 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">座席数</div>
+        <%= form.select :seats_number, Library.seats_numbers.keys.map { |key| [I18n.t("enums.library.seats_number.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <!-- 座席数の選択フィールド -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">座席数</div>
-        <div class="ml-8">
-          <%= form.select :seats_number, Library.seats_numbers.keys.map { |key| [I18n.t("enums.library.seats_number.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- PC利用可能 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">PC利用可能</div>
+        <%= form.select :pc_available, Library.pc_availables.keys.map { |key| [I18n.t("enums.library.pc_available.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <!-- PC利用可能かの選択フィールド -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">PC利用可能</div>
-        <div class="ml-8">
-          <%= form.select :pc_available, Library.pc_availables.keys.map { |key| [I18n.t("enums.library.pc_available.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- WiFi利用可能 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">WiFi利用可能</div>
+        <%= form.select :wifi_available, Library.wifi_availables.keys.map { |key| [I18n.t("enums.library.wifi_available.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <!-- WiFi利用可能かの選択フィールド -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">WiFi利用可能</div>
-        <div class="ml-8">
-          <%= form.select :wifi_available, Library.wifi_availables.keys.map { |key| [I18n.t("enums.library.wifi_available.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 電源の有無 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">電源利用可能</div>
+        <%= form.select :power_available, Library.power_availables.keys.map { |key| [I18n.t("enums.library.power_available.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
 
-      <!-- 電源の有無の選択フィールド -->
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">電源利用可能</div>
-        <div class="ml-8">
-          <%= form.select :power_available, Library.power_availables.keys.map { |key| [I18n.t("enums.library.power_available.#{key}"), key] }, {}, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
+      <!-- 備考 -->
+      <div class="mb-6">
+        <div class="bg-gray-100 p-2 rounded text-center mb-2">備考</div>
+        <%= form.text_area :body, class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
       </div>
-
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-32 bg-gray-100 p-2 rounded text-center">備考</div>
-        <div class="ml-8">
-          <%= form.text_area :body, class: "shadow appearance-none border rounded py-2 px-3 w-64 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" %>
-        </div>
-      </div>
+    </div>
+    <!-- 保存ボタン -->
+    <div class="text-center mt-8">
+      <%= form.submit "この内容に変更する", class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     </div>
   <% end %>
 

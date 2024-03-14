@@ -41,6 +41,8 @@ config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
 
-# .envファイルをgithub上にアップさせないように設定
+# github上にアップさせないように設定
 .env
 /.env
+
+node_modules/

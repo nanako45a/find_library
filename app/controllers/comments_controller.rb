@@ -1,12 +1,11 @@
 class CommentsController < ApplicationController
-  # ユーザーがログインしていることを確認
   before_action :require_login
 
   def create
     # コメントする図書館を特定
     @library = Library.find(params[:library_id])
-    # 新しいコメントを直接作成し、パラメーターからlibrary_idを取得して設定
-    @comment = Comment.new(comment_params)
+    # 新しいコメントを直接作成し、パラメーターからidを取得して設定
+    @comment = @library.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
       redirect_to @library, notice: 'コメントを追加しました。'
@@ -32,6 +31,6 @@ class CommentsController < ApplicationController
   # Strong Parameters
   # フォームから送信されたデータのうち、許可されたパラメータのみ使用可能にする
   def comment_params
-    params.require(:comment).permit(:comments_body, :comments_seats_number, :comments_pc_available, :comments_wifi_available, :comments_power_available, :library_id)
+    params.require(:comment).permit(:comments_body, :comments_seats_number, :comments_pc_available, :comments_wifi_available, :comments_power_available)
   end
 end

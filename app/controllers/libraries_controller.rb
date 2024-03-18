@@ -6,8 +6,10 @@ class LibrariesController < ApplicationController
     # 投稿済みの図書館名、都道府県名を格納
     @unique_library_names = Library.unique_library_names
     @unique_prefectures = Library.unique_prefectures
-    # 検索条件に基づいてフィルタリングされた図書館のリストをページネート
-    @libraries = Library.search(params[:name], params[:prefecture], params[:study_rooms], params[:holiday]).page(params[:page]).per(6)
+    # ransackを使用して検索条件に基づいてフィルタリングされた図書館のリストをページネート
+    @q = Library.ransack(params[:q])
+    @libraries = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+
   end
 
   def show
@@ -67,8 +69,14 @@ class LibrariesController < ApplicationController
 
   private
 
-# StrongParameters機能（コントローラーはフォームから送信されたパラメータを安全にハンドルしマスアサインメントの脆弱性を防ぐ）
+  # StrongParameters機能（コントローラーはフォームから送信されたパラメータを安全にハンドルしマスアサインメントの脆弱性を防ぐ）
   def library_params
     params.require(:library).permit(:name, :prefecture, :study_rooms, :body, :address, :access, :img, :holiday, :latitude, :longitude, :seats_number, :pc_available, :wifi_available, :power_available)
+  end
+
+  def autocomplete
+    query = params[:query]
+    libraries = Library.where("name ILIKE ?", "%#{query}%").limit(5)
+    render json: libraries.map { |library| { id: library.id, name: library.name } }
   end
 end

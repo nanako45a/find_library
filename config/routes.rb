@@ -35,4 +35,7 @@ Rails.application.routes.draw do
 
   # お問い合わせページ用のルート
   get 'contact', to: 'pages#contact', as: :contact
+
+  # オートコンプリート
+  get 'libraries/autocomplete', to: 'libraries#autocomplete', as: :autocomplete_libraries
 end

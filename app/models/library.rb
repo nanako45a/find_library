@@ -49,23 +49,16 @@ class Library < ApplicationRecord
     power_unknown: 2      # わからない
   }
 
-  # クラスメソッド
-  # 検索ロジック
-  def self.search(name, prefecture, study_rooms, holiday)
-    libraries = all
-    libraries = libraries.where("name ILIKE ?", "%#{name}%") if name.present?
-    libraries = libraries.where(prefecture: prefecture) if prefecture.present?
-    libraries = libraries.where(study_rooms: study_rooms.to_i) if study_rooms.present?
-    libraries = libraries.where("holiday ILIKE ?", "%#{holiday}%") if holiday.present?
-    libraries
+  # 検索可能な属性を定義
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name prefecture study_rooms latitude longitude created_at updated_at]
   end
 
-  # 都道府県の一意の値を取得
+  # 投稿済みの都道府県、図書館名をフィルタリング
   def self.unique_prefectures
     select(:prefecture).distinct.map(&:prefecture)
   end
 
-  # 図書館名の一意の値を取得
   def self.unique_library_names
     select(:name).distinct.order(:name).map(&:name)
   end

@@ -1,35 +1,10 @@
+<!-- app/views/libraries/index.html.erb -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <div style="margin-bottom: 60px;"></div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-house"></i> 図書館一覧</h1>
 
   <hr class="my-4 border-gray-300">
-
-  <!-- 検索フォーム -->
-  <div id="search-form" class="card border rounded shadow p-4 mx-auto max-w-4xl mt-5 hover:bg-gray-100">
-    <%= form_with url: libraries_path, method: :get, local: true, class: "flex flex-col sm:flex-row justify-center gap-4 mb-8" do |form| %>
-      <div class="flex-1">
-        <%= form.label :name, '図書館名', class: "block text-gray-700 text-sm font-bold mb-2 sm:mb-0" %>
-        <%= text_field_tag :name, params[:name], list: 'library-names', class: "shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" %>
-      </div>
-  
-      <div class="flex-1">
-        <%= form.label :prefecture, '都道府県', class: "block text-gray-700 text-sm font-bold mb-2 sm:mb-0" %>
-        <%= form.select :prefecture, options_for_select(@unique_prefectures, selected: params[:prefecture]), include_blank: true, class: "shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" %>
-      </div>
-  
-      <div class="flex-1">
-        <%= form.label :study_rooms, '自習室の有無', class: "block text-gray-700 text-sm font-bold mb-2 sm:mb-0" %>
-        <%= form.select :study_rooms, options_for_select([['あり', 1], ['なし', 0]], selected: params[:study_rooms].present? ? params[:study_rooms].to_i : nil), include_blank: true, class: "shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full" %>
-      </div>
-  
-      <div class="flex items-end justify-center flex-1">
-        <%= form.button type: 'submit', class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline" do %>
-          <i class="fa-solid fa-magnifying-glass"></i> 検索
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
+  <%= render 'search_form' %>
   <hr class="my-4 border-gray-300">
 
   <div class="text-center mt-9">

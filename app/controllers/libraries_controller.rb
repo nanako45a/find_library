@@ -3,8 +3,7 @@ class LibrariesController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    # 投稿済みの図書館名、都道府県名を格納
-    @unique_library_names = Library.unique_library_names
+    # 投稿済みの都道府県名を格納
     @unique_prefectures = Library.unique_prefectures
     # ransackを使用して検索条件に基づいてフィルタリングされた図書館のリストをページネート
     @q = Library.ransack(params[:q])
@@ -67,16 +66,17 @@ class LibrariesController < ApplicationController
     redirect_to libraries_path, notice: '図書館を削除しました'
   end
 
+  def search
+    @libraries = Library.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   # StrongParameters機能（コントローラーはフォームから送信されたパラメータを安全にハンドルしマスアサインメントの脆弱性を防ぐ）
   def library_params
     params.require(:library).permit(:name, :prefecture, :study_rooms, :body, :address, :access, :img, :holiday, :latitude, :longitude, :seats_number, :pc_available, :wifi_available, :power_available)
-  end
-
-  def autocomplete
-    query = params[:query]
-    libraries = Library.where("name ILIKE ?", "%#{query}%").limit(5)
-    render json: libraries.map { |library| { id: library.id, name: library.name } }
   end
 end

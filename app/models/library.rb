@@ -54,12 +54,8 @@ class Library < ApplicationRecord
     %w[name prefecture study_rooms latitude longitude created_at updated_at]
   end
 
-  # 投稿済みの都道府県、図書館名をフィルタリング
+  # 投稿済みの都道府県をフィルタリング
   def self.unique_prefectures
     select(:prefecture).distinct.map(&:prefecture)
-  end
-
-  def self.unique_library_names
-    select(:name).distinct.order(:name).map(&:name)
   end
 end

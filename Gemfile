@@ -61,6 +61,9 @@ gem "aws-sdk-s3", require: false
 # ページネーション
 gem 'kaminari'
 
+# 検索機能
+gem 'ransack'
+
 # 位置情報
 gem "geocoder"
 gem 'faker'

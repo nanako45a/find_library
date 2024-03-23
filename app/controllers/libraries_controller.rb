@@ -3,11 +3,10 @@ class LibrariesController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    # 投稿済みの図書館名、都道府県名を格納
-    @unique_library_names = Library.unique_library_names
-    @unique_prefectures = Library.unique_prefectures
-    # 検索条件に基づいてフィルタリングされた図書館のリストをページネート
-    @libraries = Library.search(params[:name], params[:prefecture], params[:study_rooms], params[:holiday]).page(params[:page]).per(6)
+    # ransackを使用して検索条件に基づいてフィルタリングされた図書館のリストをページネート
+    @q = Library.ransack(params[:q])
+    @libraries = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+
   end
 
   def show
@@ -65,9 +64,16 @@ class LibrariesController < ApplicationController
     redirect_to libraries_path, notice: '図書館を削除しました'
   end
 
+  def search
+    @libraries = Library.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
-# StrongParameters機能（コントローラーはフォームから送信されたパラメータを安全にハンドルしマスアサインメントの脆弱性を防ぐ）
+  # StrongParameters機能（コントローラーはフォームから送信されたパラメータを安全にハンドルしマスアサインメントの脆弱性を防ぐ）
   def library_params
     params.require(:library).permit(:name, :prefecture, :study_rooms, :body, :address, :access, :img, :holiday, :latitude, :longitude, :seats_number, :pc_available, :wifi_available, :power_available)
   end

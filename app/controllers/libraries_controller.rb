@@ -3,8 +3,6 @@ class LibrariesController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    # 投稿済みの都道府県名を格納
-    @unique_prefectures = Library.unique_prefectures
     # ransackを使用して検索条件に基づいてフィルタリングされた図書館のリストをページネート
     @q = Library.ransack(params[:q])
     @libraries = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])

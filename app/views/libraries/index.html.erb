@@ -4,7 +4,7 @@
 
   <hr class="my-4 border-gray-300">
 
-  <%= search_form_for @q, url: libraries_path, class: "space-y-4 md:space-y-0" do |f| %>
+  <%= search_form_for @q, url: libraries_path, class: "space-y-4 md:space-y-0", data: { turbo_frame: "library_results" } do |f| %>
     <div class="flex flex-col md:flex-row justify-center gap-4">
 
       <div class="relative flex-1">
@@ -35,45 +35,47 @@
     <% end %>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-    <% @libraries.each do |library| %>
-      <div class="card border rounded-lg p-6 hover:bg-gray-100">
-        <!-- 自習室の有無表示 -->
-        <div class="text-center mb-6">
-          <div class="border border-gray-400 mx-auto inline-block rounded-full px-6 py-2">
-            <!-- デバイスサイズに応じてフォントサイズを調整（スマホデバイスでxsサイズ、スモールデバイス以上でmdサイズ） -->
-            <h4 class="text-xs sm:text-md font-semibold text-gray-500">自習室 <%= library.study_rooms.to_i > 0 ? 'あり' : 'なし' %></h4>
+  <turbo-frame id="library_results">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+      <% @libraries.each do |library| %>
+        <div class="card border rounded-lg p-6 hover:bg-gray-100">
+          <!-- 自習室の有無表示 -->
+          <div class="text-center mb-6">
+            <div class="border border-gray-400 mx-auto inline-block rounded-full px-6 py-2">
+              <!-- デバイスサイズに応じてフォントサイズを調整（スマホデバイスでxsサイズ、スモールデバイス以上でmdサイズ） -->
+              <h4 class="text-xs sm:text-md font-semibold text-gray-500">自習室 <%= library.study_rooms.to_i > 0 ? 'あり' : 'なし' %></h4>
+            </div>
+          </div>
+
+          <h2 class="text-sm sm:text-lg font-bold text-gray-600 mb-6"><%= library.prefecture %> <%= library.name %></h2>
+
+          <hr class="my-4 border-gray-300 max-w-md mx-auto">
+
+          <!-- 画像表示 -->
+          <% if library.img.present? %>
+            <div class="mb-6">
+              <%= image_tag library.img.url, class: "max-w-48 h-auto rounded mx-auto" %>
+            </div>
+          <% else %>
+            <div class="flex justify-center mb-6">
+              <%= image_tag 'default_library1.webp', class: "max-w-36 h-auto rounded mx-auto" %>
+            </div>
+          <% end %>
+
+          <!-- 座席数表示 -->
+          <div class="text-center mb-6">
+            <div class="seat-tag">
+              <h4 class="text-xs sm:text-sm font-semibold text-gray-500">座席数: <%= I18n.t("enums.library.seats_number.#{library.seats_number}") %></h4>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <%= link_to '詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 sm:py-2.5 sm:px-4.5 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline", data: { turbo: false } %>
           </div>
         </div>
-
-        <h2 class="text-sm sm:text-lg font-bold text-gray-600 mb-6"><%= library.prefecture %> <%= library.name %></h2>
-
-        <hr class="my-4 border-gray-300 max-w-md mx-auto">
-
-        <!-- 画像表示 -->
-        <% if library.img.present? %>
-          <div class="mb-6">
-            <%= image_tag library.img.url, class: "max-w-48 h-auto rounded mx-auto" %>
-          </div>
-        <% else %>
-          <div class="flex justify-center mb-6">
-            <%= image_tag 'default_library1.webp', class: "max-w-36 h-auto rounded mx-auto" %>
-          </div>
-        <% end %>
-
-        <!-- 座席数表示 -->
-        <div class="text-center mb-6">
-          <div class="seat-tag">
-            <h4 class="text-xs sm:text-sm font-semibold text-gray-500">座席数: <%= I18n.t("enums.library.seats_number.#{library.seats_number}") %></h4>
-          </div>
-        </div>
-
-        <div class="mt-6">
-          <%= link_to '詳細を見る', library_path(library), class: "bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 sm:py-2.5 sm:px-4.5 text-xs sm:text-sm rounded focus:outline-none focus:shadow-outline" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  </turbo-frame>
 
   <!-- ページネーションリンク -->
   <div class="mt-8 flex justify-center">

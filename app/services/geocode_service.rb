@@ -59,7 +59,12 @@ class GeocodeService
       # 図書館の名前と場所を含むハッシュの配列を返す
       # 各図書館の情報を{name: 名前, location: 場所}の形式でマッピング
       libraries = json_response['results'].map do |library|
-        { name: library['name'], location: library['vicinity'] }
+        {
+          name: library['name'],
+          location: library['vicinity'],
+          near_latitude: library['geometry']['location']['lat'],
+          near_longitude: library['geometry']['location']['lng']
+        }
       end
       return libraries
     else

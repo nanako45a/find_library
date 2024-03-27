@@ -63,7 +63,7 @@
   </div>
 
   <!-- 地図表示コンテナ -->
-  <div id="library-map" style="height: 300px; width: 300px; margin: 20px auto;"></div>
+  <div id="map" style="height: 300px; width: 300px; margin: 20px auto;"></div>
 
   <script>
   function initLibraryMap() {
@@ -78,8 +78,8 @@
       map: map
     });
   }
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initLibraryMap"></script>
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initLibraryMap"></script>
 
   <hr class="my-4 border-gray-300 max-w-md mx-auto">
 

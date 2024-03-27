@@ -3,17 +3,13 @@ class ProfilesController < ApplicationController
   before_action :set_user
 
   def show
-    # ユーザーが投稿した図書館を取得
     @libraries = Library.where(user_id: @user.id)
-    # ユーザーがブックマークした図書館を取得
     @bookmarked_libraries = @user.bookmarked_libraries
-    # ユーザーの緯度経度を取得
+    # GeocodeServiceクラスで呼び出した情報を各変数に格納
     @geocode_result = GeocodeService.get_user_geocode(@user.user_prefecture, @user.user_city)
     if @geocode_result[:user_latitude] && @geocode_result[:user_longitude]
-      # 条件分岐で緯度経度を取得できた場合のみ基に近くの図書館の情報を取得
       @nearby_libraries = GeocodeService.find_libraries_nearby(@geocode_result[:user_latitude], @geocode_result[:user_longitude])
     else
-      # 取得できなかった場合は空の配列を返す
       @nearby_libraries = []
     end
   end

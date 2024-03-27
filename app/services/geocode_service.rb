@@ -65,7 +65,7 @@ class GeocodeService
           near_latitude: library['geometry']['location']['lat'],
           near_longitude: library['geometry']['location']['lng']
         }
-      end
+      end.take(3)
       return libraries
     else
       # エラーがあればそのステータスをコンソールに出力し、空の配列を返す

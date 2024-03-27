@@ -68,38 +68,28 @@
       <% end %>
     <% end %>
 
-    <!-- コントローラーで定義した@nearby_libraries変数をチェック -->
-    <h2 class="text-lg font-bold text-gray-600 mb-6">近くの図書館</h2>
-    <% if @nearby_libraries.empty? %>
-      <div class="text-center">近くに図書館は見つかりませんでした。</div>
-    <% else %>
-      <% @nearby_libraries.each do |library| %>
-        <div class="border rounded-lg p-6 mb-8 hover:bg-gray-100">
-          <h3 class="font-bold text-gray-800"><%= library[:name] %></h3>
-          <p class="text-gray-600"><%= library[:location] %></p>
-          <p class="text-gray-500">緯度: <%= library[:near_latitude] %>, 経度: <%= library[:near_longitude] %></p>
-        </div>
-      <% end %>
-    <% end %>
+    <h2 class="text-lg font-bold text-gray-600 mb-6"><i class="fa-solid fa-house"></i> <%= @user.name %> の街の図書館</h2>
 
-    <!-- Google Mapsを表示するためのコンテナ -->
     <div id="map" style="height: 400px; width: 100%;"></div>
     
     <script>
-      function initRecommendMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: {lat: -34.397, lng: 150.644}
-        });
+    function initRecommendMap() {
+      var userLat = <%= @geocode_result[:user_latitude] || -34.397 %>;
+      var userLng = <%= @geocode_result[:user_longitude] || 150.644 %>;
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: {lat: userLat, lng: userLng}
+      });
     
-        <% @nearby_libraries.each do |library| %>
-          var marker = new google.maps.Marker({
-            position: {lat: <%= library[:near_latitude] %>, lng: <%= library[:near_longitude] %>},
-            map: map,
-            title: '<%= library[:name] %>'
-          });
-        <% end %>
-      }
+      <% @nearby_libraries.each do |library| %>
+        var marker = new google.maps.Marker({
+          position: {lat: <%= library[:near_latitude] %>, lng: <%= library[:near_longitude] %>},
+          map: map,
+          title: '<%= library[:name] %>'
+        });
+      <% end %>
+    }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initRecommendMap" async defer></script>
 

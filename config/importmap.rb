@@ -6,9 +6,9 @@ pin "application", preload: true
 
 # turbo,stimulus,追加のStimulusライブラリをピンし、プリロードされるよう設定
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
-pin "@hotwired/stimulus", to: "@hotwired--stimulus.js" # @3.2.2
+pin "@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.2.2/dist/stimulus.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 
 # app/javascript/controllers内のjsファイルを自動的にロードし、controllers名前空間下で利用可能にする
 pin_all_from "app/javascript/controllers", under: "controllers"
-pin "stimulus-autocomplete" # @3.1.0
+pin "stimulus-autocomplete", to: "https://ga.jspm.io/npm:stimulus-autocomplete@3.1.0/src/autocomplete.js"

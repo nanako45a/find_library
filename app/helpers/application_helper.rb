@@ -7,4 +7,35 @@ module ApplicationHelper
      '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'
     ]
   end
+
+  def default_meta_tags
+    {
+      site: 'FindLibrary',
+      title: 'FindLibrary',
+      reverse: true,
+      separator: '|',   #Webサイト名とページタイトルを区切るためのテキスト
+      description: '自習室のある図書館を検索できるサービスです',
+      keywords: '自習室,図書館',   #キーワードを「,」区切りで設定
+      canonical: request.original_url,   #優先するurlを指定
+      noindex: ! Rails.env.production?,
+      icon: [                    #画像はapp/assets/imagesディレクトリに保存
+        { href: image_url('OGP.png') },
+        { href: image_url('OGP.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
+      ],
+      og: {
+        site_name: 'FindLibrary',
+        title: 'FindLibrary',
+        description: '自習室のある図書館を検索できるサービスです', 
+        type: 'website',
+        url: request.original_url,
+        image: image_url('OGP.png'),# 配置するパスやフォルダ名によって変更
+        locale: 'ja_JP',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@rntq_75',
+        image: image_url('OGP.png')
+      }
+    }
+  end
 end

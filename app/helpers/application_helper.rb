@@ -17,15 +17,14 @@ module ApplicationHelper
       description: '自習室のある図書館を検索できるサービスです',
       keywords: '自習室,図書館',   #キーワードを「,」区切りで設定
       canonical: request.original_url,   #優先するurlを指定
-      noindex: ! Rails.env.production?,
       icon: [                    #画像はapp/assets/imagesディレクトリに保存
         { href: image_url('OGP.png') },
         { href: image_url('OGP.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
       ],
       og: {
-        site_name: 'FindLibrary',
-        title: 'FindLibrary',
-        description: '自習室のある図書館を検索できるサービスです', 
+        site_name: :site,
+        title: :title,
+        description: :description, 
         type: 'website',
         url: request.original_url,
         image: image_url('OGP.png'),# 配置するパスやフォルダ名によって変更

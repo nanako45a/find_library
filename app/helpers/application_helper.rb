@@ -19,7 +19,7 @@ module ApplicationHelper
       canonical: request.original_url,   #優先するurlを指定
       noindex: ! Rails.env.production?,
       icon: [                    #画像はapp/assets/imagesディレクトリに保存
-        { href: image_url('favicon.ico') },
+        { href: image_url('OGP.png') },
         { href: image_url('OGP.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
       ],
       og: {

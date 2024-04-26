@@ -18,9 +18,12 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
-  def edit; end
+  def edit
+    # app/views/profiles/edit.html.erb にレンダリング
+  end
 
   def update
+    # app/views/profiles/edit.html.erb のformからデータを受信し、user_paramsメソッドを通じて必要なパラメータのみ取得
     if @user.update(user_params)
       redirect_to profile_path
       flash[:success]= 'マイページを更新しました'

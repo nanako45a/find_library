@@ -2,7 +2,6 @@ class UserSessionsController < ApplicationController
   before_action :require_login, only: [:destroy]
 
   def new
-    # ログインページを表示
   end
 
   def create

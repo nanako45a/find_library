@@ -1,4 +1,4 @@
-<!-- 新規登録画面 -->
+<!-- 新規登録画面 app/views/libraries/new.html.erb -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <div style="margin-bottom: 60px;"></div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-pen-fancy"></i> 新しい図書館を追加</h1>
@@ -101,7 +101,7 @@
         <div class="ml-8 w-48">
           <%= form.text_field :address, id: "library-address", placeholder: "住所を検索", class: "shadow appearance-none border rounded py-2 px-3 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         </div>
-        <button onclick="codeAddress()" type="button" class="ml-4 bg-gray-200 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <button onclick="codeAddress()" type="button" class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline shadow">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>

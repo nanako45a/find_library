@@ -1,4 +1,4 @@
-<!-- 新規登録画面 -->
+<!-- 新規登録画面 app/views/libraries/new.html.erb -->
 <div class="container mx-auto max-w-7xl px-4 text-center mt-20">
   <div style="margin-bottom: 60px;"></div>
   <h1 class="text-xl font-semibold mb-12 text-gray-600"><i class="fa-solid fa-pen-fancy"></i> 新しい図書館を追加</h1>
@@ -114,72 +114,36 @@
       <!-- 取得した緯度経度と住所を表示 -->
       <div id="display" class="text-center mt-4"></div>
 
-      <!-- 地図の表示部分 -->
-      <div class="map-container text-center mt-12 mx-auto">
-        <div id='map'></div>
-      </div>
-
-      <style>
-      #map {
-        height: 400px;
-        width: 400px;
-        margin: auto;
-      }
-
-      .map-container {
-        max-width: 600px;
-        margin: 20px auto;
-      }
-      </style>
-
       <!-- 住所検索と地図表示の処理 -->
       <script>
-      let map, marker, geocoder;
-
-      // 1.Google Maps初期化initmap関数
-      function initMap() {
-        // map変数にGoogle Mapsのインスタンスを作成
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 35.6895, lng: 139.6917},
-          zoom: 12,
-        });
-        geocoder = new google.maps.Geocoder(); // geocoder変数にGeocoderのインスタンスを作成
-      }
+      let geocoder;
 
       // 2.「地図表示ボタン」で呼び出されるcodeadress関数
       function codeAddress() {
         // 入力された図書館名を取得
         const inputAddress = document.getElementById('library-name').value;
-        if (marker) {
-          marker.setMap(null); // 前マーカーを削除
-        }
+
+        if (!geocoder) geocoder = new google.maps.Geocoder();
       
         // 3.Geocoding APIを使用して住所を緯度経度に変換
         geocoder.geocode({ 'address': inputAddress}, function(results, status) {
             if (status == 'OK') {
-                // 検索成功時、地図の中心を検索結果に更新
-                map.setCenter(results[0].geometry.location);
-                // 検索結果の位置にマーカーを設置
-                marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
                 // 緯度、経度、フォーマットされた住所を隠しフィールドにセット
                 document.getElementById('library-latitude').value = results[0].geometry.location.lat();
                 document.getElementById('library-longitude').value = results[0].geometry.location.lng();
                 document.getElementById('library-address').value = results[0].formatted_address;
-                // 緯度経度と住所を画面に表示
+                document.getElementById('display').textContent = "住所: " + results[0].formatted_address + ", 緯度: " + results[0].geometry.location.lat() + ", 経度: " + results[0].geometry.location.lng();
                 display.textContent = "住所: " + results[0].formatted_address + ", 緯度: " + results[0].geometry.location.lat() + ", 経度: " + results[0].geometry.location.lng();
             } else {
                 // 検索が失敗した場合の処理
                 alert('該当する結果がありませんでした：' + status);
-                display.textContent = "該当する結果がありませんでした。";
+                document.getElementById('display').textContent = "該当する結果がありませんでした。";
             }
         });
       }
       </script>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>" async defer></script>
 
       <hr class="my-8 border-gray-300 max-w-md mx-auto">
 
